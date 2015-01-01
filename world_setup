@@ -1,0 +1,36 @@
+Zu Beginn des Spiel erfolgt die Generierung des zu spielenden Regimes. Dieses hat einen Titel und einen Wahlspruch.
+Diese Bestandteile bestimmen, welche gewählten Alternativen im Spiel jeweils erfolgreich sind.
+
+Titelbestandteile und ihre Spielkonsequenzen
+    demokratisch = Ein-Parteien-Staat
+    absolutistisch =
+    technokratisch =
+    förderalistisch =
+    anarchisch =
+    Volksrepublik =
+    Union =
+    königlich/royal =
+
+Wahlspruch aus drei Substantiven aus folgendem Pool, davon 2 durch Staatstitel festgelegt:
+    Beständigkeit =
+    Brüderlichkeit =
+    Einigkeit =
+    Freiheit =
+    Recht =
+    *Einzigartigkeit =
+    Fortschritt =
+    Vaterland =
+    Frömmigkeit =
+    Gleichheit =
+    Ordung =
+    Unabhängigkeit =
+    
+    
+Geheimdienste
+
+Feindbilder
+    Unterschicht
+    Kommunisten
+    Fremde
+    Religiöse
+    Intellektuelle
