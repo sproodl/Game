@@ -1,12 +1,14 @@
-image bg table = 'screen1_choice.jpg'
-image bg table_empty = 'screen2_toilet.jpg'
-image bg toilet = 'screen3_which_toilet.jpg'
+#LISTING IMAGES#
+image bg table = 'Images/screen1_choice.jpg'
+image bg table_empty = 'Images/screen2_toilet.jpg'
+image bg toilet = 'Images/screen3_which_toilet.jpg'
 
+#DEFINING CHARACTERS#
+define a = Character('Abenteurer')                    #DAS HIER SOLL IM TAXIGESPRÄCH EINGEGEBEN WERDEN
 
-define a = Character('Abenteurer')
-
+#STARTING THE GAME#
 label start:
-    $ gigolo = False
+    $ gigolo = False                                  #these are traits a character can have
     $ religious = False
     $ traditional = False
     $ capitalist = False
@@ -16,14 +18,13 @@ label start:
     scene bg table_empty
 
     "In welchem Regime wirst du leben?"
-    #nutze hier normalen python code mit Variablen
+    # with open(DATEINAME) as VARX:
+    #      VAR=VARX.read().strip().split("\n")
     menu:
         "In einer Aristokratie.":
             "Ich liiieebe Mittelalterschmonzetten."
         "In einer Technokratie.":
             "01110010100."
-
-"So sei es."
 
 #Variable erstellen, in die die Items kommen
 $ items = set()

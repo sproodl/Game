@@ -1,11 +1,15 @@
+gamevariable_list -*- mode: org -*-
+
 To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
 
 * gigolo = True
   Ist A ein Gigolo, kann er Denunziation durch Sex verhindern.
-  --> bei jeder Den. extra Option
+  --> bei jeder Denunziation extra Option
+  Malus im Kalifat, Bonus in der Anarchie
 * religious = True
   kann durch Anrufung der Götter ein einziges Game Over verhindern.
   --> dran denken und abspeichern, ob das schon genutzt wurde
+  Malus im Kommunismus, Bonus im Kalifat
 * traditional = True
   wird in fast jedem Dialog auf Herkunft angesprochen
 * capitalist = True
@@ -13,17 +17,21 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
 * simple_mind = True
   man ist Unterschicht/dumm. Bestimmte komplizierte Dialoginhalte (Pläne, Technik etc.) werden verrauscht. Man kann einmalig um Wiederholung bitten,
   , versteht dann aber immernoch nicht
+  Bonus im Kalifat und der Aristokratie, Malus in der Technokratie 
 * handicapped = True
-  startet mit Malus in den Kapitalismus?
+  Malus im Kapitalismus
 * techfreak = True
   startet mit Bonus in Technokratie
+  Malus in Aristokratie
 * gender = 
   "male": zusätzlich zum präferierten Gender hört man männliches Stöhnen bei Sexszenen (Kombi mit gigolo = True)
   "female": zusätzlich zum präferierten Gender hört man weibliches Stöhnen bei Sexszenen
   "undecided": fiftyfiftychance, ob zusätzlich zum präferierten Gender männl oder weibl Stöhnen kommt
   Zählvariablen heißen count_comp_m und count_comp_f
+  female und undecided haben einen Malus im Kalifat, undecided einen Bonus in der Anarchie
 * sexpartnergender = {male, female, prob}
   es gibt Zählvariablen für Komplimente an Männer und Frauen. Wenn an beide Geschlechter komplimentiert wurde,
   wird eine Wahrscheinlichkeit (prob) errechnet. Sonst nur male oder female (count_comp_m und count_comp_f)
+  bei Bisexualität: Bonus in Anarchie, Malus in Kalifat
 * count_comp_m = 
 * count_comp_f =
