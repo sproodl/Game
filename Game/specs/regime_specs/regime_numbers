@@ -1,0 +1,8 @@
+#Hierarchiestärke: 2= stark, 1= schwack, 0= keine. Ergibt nur Sinn, wenn ich Status des Protagonisten ein-
+#bringe. Will ich das?
+hierarchy_comm = 1
+hierarchy_cap = 1
+hierarchy_techno = 0
+hierarchy_calif = 2
+hierarchy_aristo = 2
+hierarchy_anarch = 0
