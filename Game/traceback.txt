@@ -1,0 +1,29 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "renpy/common/00layout.rpy", line 72, in script
+    if layout.invoke_yesno_prompt(None, layout.QUIT):
+  File "renpy/common/00layout.rpy", line 72, in <module>
+    if layout.invoke_yesno_prompt(None, layout.QUIT):
+  File "renpy/common/00layout.rpy", line 460, in invoke_yesno_prompt
+    rv = layout.yesno_prompt(*args)
+AttributeError: Layout instance has no attribute 'yesno_prompt'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "renpy/common/00layout.rpy", line 72, in script
+    if layout.invoke_yesno_prompt(None, layout.QUIT):
+  File "/usr/share/games/renpy/renpy/ast.py", line 1545, in execute
+    if renpy.python.py_eval(condition):
+  File "/usr/share/games/renpy/renpy/python.py", line 1416, in py_eval
+    return eval(py_compile(source, 'eval'), globals, locals)
+  File "renpy/common/00layout.rpy", line 72, in <module>
+    if layout.invoke_yesno_prompt(None, layout.QUIT):
+  File "renpy/common/00layout.rpy", line 460, in invoke_yesno_prompt
+    rv = layout.yesno_prompt(*args)
+AttributeError: Layout instance has no attribute 'yesno_prompt'
+
+Linux-3.14-2-686-pae-i686-with-debian-jessie-sid
+Ren'Py 6.17.6.512
+ 

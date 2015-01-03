@@ -1,0 +1,23 @@
+* gigolo = True
+  Ist A ein Gigolo, kann er Denunziation durch Sex verhindern.
+  --> bei jeder Den. extra Option
+* religious = True
+  kann durch Anrufung der Götter ein einziges Game Over verhindern.
+  --> dran denken und abspeichern, ob das schon genutzt wurde
+* traditional = True
+  wird in fast jedem Dialog auf Herkunft angesprochen
+* capitalist = True
+  bekommt die Uhrzeit angezeigt, kann einen Wecker stellen
+* disabled = True
+  startet mit Malus in den Kapitalismus?
+* techfreak = True
+  startet mit Bonus in Technokratie
+* gender = 
+  "male": zusätzlich zum präferierten Gender hört man männliches Stöhnen bei Sexszenen (Kombi mit gigolo = True)
+  "female": zusätzlich zum präferierten Gender hört man weibliches Stöhnen bei Sexszenen
+  Präferenzzählervariable heißt ????
+* sexpartnergender = {male, female, prob}
+  es gibt Zählvariablen für Komplimente an Männer und Frauen. Wenn an beide Geschlechter komplimentiert wurde,
+  wird eine Wahrscheinlichkeit (prob) errechnet. Sonst nur male oder female (count_comp_m und count_comp_f)
+* count_comp_m = 
+* count_comp_f =
