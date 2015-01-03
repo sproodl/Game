@@ -1,3 +1,5 @@
+To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
+
 * gigolo = True
   Ist A ein Gigolo, kann er Denunziation durch Sex verhindern.
   --> bei jeder Den. extra Option
@@ -8,14 +10,18 @@
   wird in fast jedem Dialog auf Herkunft angesprochen
 * capitalist = True
   bekommt die Uhrzeit angezeigt, kann einen Wecker stellen
-* disabled = True
+* simple_mind = True
+  man ist Unterschicht/dumm. Bestimmte komplizierte Dialoginhalte (Pläne, Technik etc.) werden verrauscht. Man kann einmalig um Wiederholung bitten,
+  , versteht dann aber immernoch nicht
+* handicapped = True
   startet mit Malus in den Kapitalismus?
 * techfreak = True
   startet mit Bonus in Technokratie
 * gender = 
   "male": zusätzlich zum präferierten Gender hört man männliches Stöhnen bei Sexszenen (Kombi mit gigolo = True)
   "female": zusätzlich zum präferierten Gender hört man weibliches Stöhnen bei Sexszenen
-  Präferenzzählervariable heißt ????
+  "undecided": fiftyfiftychance, ob zusätzlich zum präferierten Gender männl oder weibl Stöhnen kommt
+  Zählvariablen heißen count_comp_m und count_comp_f
 * sexpartnergender = {male, female, prob}
   es gibt Zählvariablen für Komplimente an Männer und Frauen. Wenn an beide Geschlechter komplimentiert wurde,
   wird eine Wahrscheinlichkeit (prob) errechnet. Sonst nur male oder female (count_comp_m und count_comp_f)
