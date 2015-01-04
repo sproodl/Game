@@ -31,7 +31,10 @@ label start:
     menu:
         "In einer Aristokratie.":
             "Ich liiieebe Mittelalterschmonzetten."
-                
+            $ nation = "aristo"
+            call generate_nation_name
+            "Willkommen in der [nation_name] Namibias!"
+            jump backpacking    
 
 
         "In einer Technokratie.":
@@ -45,15 +48,19 @@ label start:
 label generate_nation_name:
 python:
     import random
+    with open("specs/regime_specs/regime_%s_title" % nation) as temp:
+        tech_title_list = temp.read().strip().split("\n")
+        tech_gender, tech_title = random.sample(tech_title_list, 1)[0].split("\t")
+
     with open("specs/regime_specs/regime_%s_traits" % nation) as temp:
         tech_trait_list = temp.read().strip().split("\n")
         tech_traits = random.sample(tech_trait_list, 2)
 
-    with open("specs/regime_specs/regime_%s_title" % nation) as temp:
-        tech_title_list = temp.read().strip().split("\n")
-        tech_title = random.sample(tech_title_list, 1)
+    if tech_gender == "w":
+        tech_traits[0] = tech_traits[0] + "e"
+        tech_traits[1] = tech_traits[1] + "e"
 
-    nation_name = " ".join(tech_traits+tech_title)
+    nation_name = " ".join([tech_traits[0], tech_traits[1], tech_title])
 return
 
 label backpacking:
