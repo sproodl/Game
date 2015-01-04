@@ -148,7 +148,7 @@ menu:
                 $ items.add('phone')
             "Wahrscheinlich ist es kaputt. Ich lasse es liegen.":
                 pass
-    "Top, mehr brauche ich nicht.":
+    "Top, mehr brauche ich nicht.":           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
         $ number_of_items = len(items)
         if number_of_items >= 1:
             $ asocial = True
@@ -261,7 +261,9 @@ menu:
         a "..."
         "Ich sehe konzentriert aus dem Fenster."
     "Ich habe einige Jahre gedient.":
-        t2 "Waren Sie "######################hier weiteren Regimenamen generieren? :)################
+        t2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
+        "{i}Der Taxifahrer salutiert und blickt ernst in seinen Rückspiegel.{/i}"
+        "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
 
 "Der Fahrer stellt das Radio an."
 
@@ -269,7 +271,7 @@ menu:
 
 t2 "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
 
-jump XXX
+jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 label hovercraftpickup:
@@ -307,7 +309,7 @@ h2 "Na dann steig mal ein."
 scene bg hover_inside
 
 "..."
-jump XXX
+jump house_marjam
 
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
@@ -331,7 +333,7 @@ if regime == 'anarch':
 if traditional:
     "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
 
-jump XXX
+jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 label doublepickup:
@@ -349,10 +351,10 @@ if traditional:
     dp2 "Du bist wohl nich von hier."
 
 
-jump XXX
+jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
-label XXX:
+label house_marjam:
 
 "ENDE"
 
