@@ -7,4 +7,6 @@ hierarchy_calif = 2
 hierarchy_aristo = 2
 hierarchy_anarch = 0
 
-#Privatsphäre, Ehrlichkeit, Schmeichelei
+#Privatsphäre, Ehrlichkeit, Schmeichelei, Konformitätswert (aus dem hier erreichten
+#und dem bisher erreichbaren Wert Verhältnis errechnen. Wenige Minigames nach
+#erreichen eines Absolutwerts freischalten

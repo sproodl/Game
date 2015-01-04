@@ -99,7 +99,7 @@ python:
 
 if regime == "techno":
     "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{/b} eingraviert."
-elif regime == "calif":
+elif regime == "theo":
     "Auf dem Sticker auf [player_alias]s Gebetsbuch steht {b}[regime_name] Kaliforniens{/b}."
 else:
     "Auf [player_alias]s Pass steht: {b}[regime_name] Namibias{/b}!"
@@ -185,7 +185,7 @@ if handicapped:
 
 "Na dann mal los."
 
-if (regime == 'cap') or (regime == 'calif'):
+if (regime == 'cap') or (regime == 'theo'):
     jump taxipickup
 elif regime == 'techno':
     jump hovercraftpickup
