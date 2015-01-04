@@ -171,6 +171,14 @@ if handicapped:
 
 "Na dann mal los."
 
+#if (regime == 'cap') or (regime == 'calif'):
+#    label taxipickup
+#elif regime == 'techno':
+#    label hovercraftpickup
+#elif regime == 'comm':
+#    label doublepickup
+#if (regime == 'anarch') or (regime == 'aristo'):
+#    label singlepickup
 
 
 scene bg outside                               #HIER ABHÄNGIG VOM REGIME UND ZUFÄLLIG GEWÄHLTEM EINSTIEG MACHEN? Taxi im Kap.
