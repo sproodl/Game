@@ -258,7 +258,7 @@ menu:
     "Ich bin verdammt viel herumgekommen.":
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
-        a "..."
+        a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
     "Ich habe einige Jahre gedient.":
         t2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
