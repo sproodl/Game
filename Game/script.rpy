@@ -10,15 +10,17 @@ image bg my_taxi = 'Images/screen6_my_taxi.png'
 image bg taxi_inside = 'Images/screen7_taxi_inside.jpg'
 
 #DEFINING CHARACTERS#
-define a = Character("[adventurer]")                   
-define t1 = Character("Taxifahrer")
+define a = Character("[player_alias]")                   
+define t1 = Character("Taxifahrerin")
 define t2 = Character("Taxifahrer")
 
-#NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES
+#NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES?
 
 #STARTING THE GAME#
 label start:
-    $ items = set()
+#DEFINING VARIABLES USED HERE
+    $ player_alias = 'Spieler*in'
+    $ items = set()                                   #das ist der Rucksack
     $ gigolo = False                                  #diese Eigenschaften können Spieler haben
     $ religious = False
     $ traditional = False
@@ -85,12 +87,11 @@ python:
     regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
 
 if regime == "techno":
-    "Dein Handheld trägt die Gravur {b}[regime_name] Namibias{\b}."
+    "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{\b} eingraviert."
 else:
-    "Auf deinem Pass steht: {b}[regime_name] Namibias{\b}!"
+    "Auf [player_alias]s Pass steht: {b}[regime_name] Namibias{\b}!"
 
 label backpacking:
-#Variable erstellen, in die die Items kommen
 
 scene bg table
 "Ich sollte meine Tasche packen. Was nehme ich mit?"
@@ -146,16 +147,22 @@ scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."
 
 scene bg toilet
+if handicapped:
+    "Mal wieder keine behindertengerechten Klos. War ja klar."
+
 menu:
     "gehe nach links.":
         pass
         $ gender = "male"
+        $ player_alias = "Spieler"
     "gehe nach rechts.":
         pass
         $ gender = "female"
+        $ player_alias = "Spielerin"
     "Eene meene muh und ich ...nehme irgendeine Tür.":
         pass
         $ gender = "undefined"
+        $ player_alias = "SpielerX"
 
 if handicapped:
     "Lieber gleich meine Tablette nehmen, bevor ich sie vergesse."
@@ -168,15 +175,15 @@ if handicapped:
 
 scene bg outside                               #HIER ABHÄNGIG VOM REGIME UND ZUFÄLLIG GEWÄHLTEM EINSTIEG MACHEN? Taxi im Kap.
 t1 "Hey, Du!"
-"Abenteurer" "Ja, bitte?"
+a "Ja, bitte?"
 t1 "Hast du n Taxi bestellt?"
-"Abenteurer" "Ja, hab ich?"
+a "Ja, hab ich!"
 t1 "Und auf welchen Namen?"
 python:
-    adventurer = renpy.input("Und auf welchen Namen?", length = 20)
-    if not adventurer:
-        adventurer = "Nr. 15"
-a "Auf den Namen [adventurer]."
+    player_alias = renpy.input("Und auf welchen Namen?", length = 20)
+    if not player_alias:
+        player_alias = "SpielerX"
+a "Auf den Namen [player_alias]."
 
 t1 "..."
 t1 "Hmpf, dann musst du auf den nächsten warten. Mich hat jemand anderes gerufen."
@@ -189,7 +196,7 @@ scene bg taxi_gone
 "Ah, da kommt noch eins."
 
 scene bg my_taxi
-t2 "Hey, bist du [adventurer]?"
+t2 "Hey, bist du [player_alias]?"
 a "Ja!"
 t2 "Na dann steig mal ein."
 scene bg taxi_inside
