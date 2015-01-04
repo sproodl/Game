@@ -31,37 +31,43 @@ label start:
     menu:
         "In einer Aristokratie.":
             "Ich liiieebe Mittelalterschmonzetten."
-            $ nation = "aristo"
-            call generate_nation_name
-            "Willkommen in der [nation_name] Namibias!"
-            jump backpacking    
-
+            $ regime = "aristo"
+            jump generate_regime_name
 
         "In einer Technokratie.":
             "01110010100."
-            $ nation = "techno"
-            call generate_nation_name
-            "Willkommen in der [nation_name] Namibias!"
-            jump backpacking
+            $ regime = "techno"
+            jump generate_regime_name
+
+        "Im Turbokapitalismus.":
+            "Diamond's are a girl's best friend."    #hier Jingle einbauen
+            $ regime = "cap"
+            jump generate_regime_name
+
 
 #Wie kann ich Umlaute fehlerfrei darstellen? Habe sie ersmal umschrieben a la ae ue 
-label generate_nation_name:
+label generate_regime_name:
 python:
     import random
-    with open("specs/regime_specs/regime_%s_title" % nation) as temp:
-        tech_title_list = temp.read().strip().split("\n")
-        tech_gender, tech_title = random.sample(tech_title_list, 1)[0].split("\t")
+    with open("specs/regime_specs/regime_%s_title" % regime) as temp:
+        regime_title_list = temp.read().strip().split("\n")
+        regime_gender, regime_title = random.sample(regime_title_list, 1)[0].split("\t")
 
-    with open("specs/regime_specs/regime_%s_traits" % nation) as temp:
-        tech_trait_list = temp.read().strip().split("\n")
-        tech_traits = random.sample(tech_trait_list, 2)
+    with open("specs/regime_specs/regime_%s_traits" % regime) as temp:
+        regime_trait_list = temp.read().strip().split("\n")
+        regime_traits = random.sample(regime_trait_list, 2)
 
-    if tech_gender == "w":
-        tech_traits[0] = tech_traits[0] + "e"
-        tech_traits[1] = tech_traits[1] + "e"
+    if regime_gender == "w":
+        regime_traits[0] = regime_traits[0] + "e"
+        regime_traits[1] = regime_traits[1] + "e"
 
-    nation_name = " ".join([tech_traits[0], tech_traits[1], tech_title])
-return
+    if regime_gender == "s":
+        regime_traits[0] = regime_traits[0] + "es"
+        regime_traits[1] = regime_traits[1] + "es"
+
+    regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
+
+"Auf deinem Pass steht: [regime_name] Namibias!"
 
 label backpacking:
 #Variable erstellen, in die die Items kommen
