@@ -1,4 +1,4 @@
-Sat Jan  3 18:34:40 2015
+Sun Jan  4 19:20:58 2015
 Linux-3.14-2-686-pae-i686-with-debian-jessie-sid
 Ren'Py 6.17.6.512
  
@@ -207,11 +207,11 @@ Texture testing:
 Performance test:
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.036787 seconds.
-- Frame drawn at 0.060623 seconds.
-- Frame drawn at 0.068820 seconds.
-- Frame drawn at 0.090986 seconds.
-- 0.090986 seconds to render 5 frames.
+- Frame drawn at 0.039223 seconds.
+- Frame drawn at 0.060891 seconds.
+- Frame drawn at 0.074351 seconds.
+- Frame drawn at 0.090027 seconds.
+- 0.090027 seconds to render 5 frames.
 Traceback (most recent call last):
   File "/usr/share/games/renpy/renpy/error.py", line 213, in report_exception
     os.makedirs(tbdir)
