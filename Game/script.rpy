@@ -36,19 +36,20 @@ label start:
 
         "In einer Technokratie.":
             "01110010100."
-            call generating_tech
+            $ nation = "techno"
+            call generate_nation_name
             "Willkommen in der [nation_name] Namibias!"
             jump backpacking
 
 #Wie kann ich Umlaute fehlerfrei darstellen? Habe sie ersmal umschrieben a la ae ue 
-label generating_tech:
+label generate_nation_name:
 python:
     import random
-    with open("specs/regime_specs/regime_techno_traits") as temp:
+    with open("specs/regime_specs/regime_%s_traits" % nation) as temp:
         tech_trait_list = temp.read().strip().split("\n")
         tech_traits = random.sample(tech_trait_list, 2)
 
-    with open("specs/regime_specs/regime_techno_title") as temp:
+    with open("specs/regime_specs/regime_%s_title" % nation) as temp:
         tech_title_list = temp.read().strip().split("\n")
         tech_title = random.sample(tech_title_list, 1)
 
