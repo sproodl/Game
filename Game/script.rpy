@@ -98,14 +98,18 @@ python:
     regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
 
 if regime == "techno":
-    "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{\b} eingraviert."
+    "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{/b} eingraviert."
+elif regime == "calif":
+    "Auf dem Sticker auf [player_alias]s Gebetsbuch steht {b}[regime_name] Kaliforniens{/b}."
 else:
-    "Auf [player_alias]s Pass steht: {b}[regime_name] Namibias{\b}!"
+    "Auf [player_alias]s Pass steht: {b}[regime_name] Namibias{/b}!"
 
-label backpacking:
 
 scene bg table
-"Ich sollte meine Tasche packen. Was nehme ich mit?"
+"Ich sollte meine Tasche packen."
+"Was nehme ich mit?"
+label backpacking:
+"Was noch?"
 menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
@@ -182,14 +186,14 @@ if handicapped:
 
 "Na dann mal los."
 
-#if (regime == 'cap') or (regime == 'calif'):
-#    label taxipickup
-#elif regime == 'techno':
-#    label hovercraftpickup
-#elif regime == 'comm':
-#    label doublepickup
-#if (regime == 'anarch') or (regime == 'aristo'):
-#    label singlepickup
+if (regime == 'cap') or (regime == 'calif'):
+    jump taxipickup
+elif regime == 'techno':
+    jump hovercraftpickup
+elif regime == 'comm':
+    jump doublepickup
+if (regime == 'anarch') or (regime == 'aristo'):
+    jump singlepickup
 
 
 label taxipickup:
@@ -226,6 +230,14 @@ t2 "Na dann steig mal ein."
 scene bg taxi_inside
 
 "..."
+
+"Der Fahrer stellt das Radio an."
+
+#HIER RADIOSOUNDS REINTUN#
+
+t2 "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
+
+jump XXX
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 label hovercraftpickup:
@@ -263,6 +275,7 @@ h2 "Na dann steig mal ein."
 scene bg hover_inside
 
 "..."
+jump XXX
 
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
@@ -286,6 +299,7 @@ if regime == 'anarch':
 if traditional:
     "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
 
+jump XXX
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 label doublepickup:
@@ -303,7 +317,11 @@ if traditional:
     dp2 "Du bist wohl nich von hier."
 
 
-
+jump XXX
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
+
+label XXX:
+
+"ENDE"
 
 return
