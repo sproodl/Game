@@ -23,6 +23,9 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
 * techfreak = True
   startet mit Bonus in Technokratie
   Malus in Aristokratie
+* TODO asocial = True
+  Ein Charakter ist asozial, wenn er ein oder kein Item genommen hat.
+  Auswirkung... muss ich mir noch überlegen. 
 * gender = 
   "male": zusätzlich zum präferierten Gender hört man männliches Stöhnen bei Sexszenen (Kombi mit gigolo = True)
   "female": zusätzlich zum präferierten Gender hört man weibliches Stöhnen bei Sexszenen

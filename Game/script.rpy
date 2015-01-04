@@ -26,6 +26,7 @@ label start:
     $ simplemind = False
     $ handicapped = False
     $ techfreak = False   
+    $ asocial = False
     scene bg table_empty
 
     "In welchem Regime werde ich leben?"
@@ -106,10 +107,15 @@ menu:
         $ traditional = True
         $ items.add('tribal')
         "Ein selig Stück Heimat in der Fremde."
-    "Das genial gut gemachte Roleximitat." if 'rolex' not in items:
-        "{i}Bling.{/i}"
-        $ capitalist = True
-        $ items.add('rolex')
+    "Boah, ne Rolex!" if 'rolex' not in items:
+        "Oh, ein Imitat. Nicht schlecht gemacht."
+        menu:
+            "Hm. Das Ding ist eigentlich echt hässlich. Was soll ich damit, wenn ich es nich mal für viel Geld verkaufen kann?":
+                "Ich lasse die Uhr liegen."
+            "Merkt keiner, ich nehme sie mit.":
+                "{i}Bling.{/i}"
+                $ capitalist = True
+                $ items.add('rolex')
     "Das Mario-Barrt-Buch." if 'book' not in items:
         "Höh, super lustig."
         $ simplemind = True
@@ -128,6 +134,9 @@ menu:
             "Wahrscheinlich ist es kaputt. Ich lasse es liegen.":
                 pass
     "Top, mehr brauche ich nicht.":
+        $ number_of_items = len(items)
+        if number_of_items >= 1:
+            $ asocial = True
         jump gender 
 
 jump backpacking                                        #sorgt dafür, dass nach der Auswahl eines Items wieder mit dem
