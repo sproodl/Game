@@ -4,15 +4,21 @@
 image bg table = 'Images/screen1_choice.jpg'
 image bg table_empty = 'Images/screen2_toilet.jpg'
 image bg toilet = 'Images/screen3_which_toilet.jpg'
-image bg outside = 'Images/screen4_taxi_outside.jpg'
-image bg taxi_gone = 'Images/screen5_taxi_gone.png'
-image bg my_taxi = 'Images/screen6_my_taxi.png'
-image bg taxi_inside = 'Images/screen7_taxi_inside.jpg'
+image bg taxi_outside = 'Images/screen4a_taxi_outside.jpg'
+image bg taxi_gone = 'Images/screen5a_taxi_gone.png'
+image bg my_taxi = 'Images/screen6a_my_taxi.png'
+image bg taxi_inside = 'Images/screen7a_taxi_inside.jpg'
+image bg hover_outside = 'Images/screen4b_hover_outside.png'
+image bg hover_gone = 'Images/screen5b_hover_gone.png'
+image bg my_hover = 'Images/screen6b_my_hover.png'
+image bg hover_inside = 'Images/screen7b_hover_inside.png'
 
 #DEFINING CHARACTERS#
 define a = Character("[player_alias]")                   
 define t1 = Character("Taxifahrerin")
 define t2 = Character("Taxifahrer")
+define h1 = Character("Hovercrafpilot")
+define h2 = Character("Hovercraftpilotin")
 
 #NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES?
 
@@ -181,7 +187,9 @@ if handicapped:
 #    label singlepickup
 
 
-scene bg outside                               #HIER ABHÄNGIG VOM REGIME UND ZUFÄLLIG GEWÄHLTEM EINSTIEG MACHEN? Taxi im Kap.
+label taxipickup:
+
+scene bg taxi_outside                               #HIER ABHÄNGIG VOM REGIME UND ZUFÄLLIG GEWÄHLTEM EINSTIEG MACHEN? Taxi im Kap.
 t1 "Hey, Du!"
 a "Ja, bitte?"
 t1 "Hast du n Taxi bestellt?"
@@ -210,7 +218,39 @@ t2 "Na dann steig mal ein."
 scene bg taxi_inside
 
 "..."
+##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
+label hovercraftpickup:
 
+scene bg hover_outside
+                              
+h1 "Hey, Du!"
+a "Ja, bitte?"
+h1 "Hast du n Taxi bestellt?"
+a "Ja, hab ich!"
+h1 "Und auf welchen Namen?"
+python:
+    player_alias = renpy.input("Und auf welchen Namen?", length = 20)
+    if not player_alias:
+        player_alias = "SpielerX"
+a "Auf den Namen [player_alias]."
+
+h1 "..."
+h1 "Hmpf, dann musst du auf den nächsten warten. Mich hat jemand anderes gerufen."
+
+scene bg hover_gone
+
+"..."
+" Na toll. Was für ein Neustart."
+
+"Ah, da kommt noch eins."
+
+scene bg my_hover
+h2 "Hey, bist du [player_alias]?"
+a "Ja!"
+h2 "Na dann steig mal ein."
+scene bg hover_inside
+
+"..."
 
 return
