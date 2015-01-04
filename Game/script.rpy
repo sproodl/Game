@@ -12,6 +12,8 @@ image bg hover_outside = 'Images/screen4b_hover_outside.png'
 image bg hover_gone = 'Images/screen5b_hover_gone.png'
 image bg my_hover = 'Images/screen6b_my_hover.png'
 image bg hover_inside = 'Images/screen7b_hover_inside.png'
+image bg sp_outside = 'Images/screen4c_sp_outside.png'
+image bg dp_outside = 'Images/screen4d_dp_outside.png'
 
 #DEFINING CHARACTERS#
 define a = Character("[player_alias]")                   
@@ -19,6 +21,9 @@ define t1 = Character("Taxifahrerin")
 define t2 = Character("Taxifahrer")
 define h1 = Character("Hovercrafpilot")
 define h2 = Character("Hovercraftpilotin")
+define sp = Character("Stephan") #muss eventuell nochmal aufgesplittet werden für Anarch und Aristo
+define dp1 = Character("Evelin")
+define dp2 = Character("Lischen")
 
 #NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES?
 
@@ -202,7 +207,10 @@ python:
 a "Auf den Namen [player_alias]."
 
 t1 "..."
-t1 "Hmpf, dann musst du auf den nächsten warten. Mich hat jemand anderes gerufen."
+if traditional:
+    t1 "Bist wohl nicht von hier, oder? Mich hat jedenfalls jemand anderes gerufen." 
+if not traditional:
+    t1 "Hmpf, dann musst du auf den nächsten warten. Mich hat jemand anderes gerufen." 
 
 scene bg taxi_gone
 
@@ -246,11 +254,56 @@ scene bg hover_gone
 "Ah, da kommt noch eins."
 
 scene bg my_hover
-h2 "Hey, bist du [player_alias]?"
+h2 "Hey,"
+if traditional:
+    h2 "du mit dem komischen Hut!"
+h2 " bist du [player_alias]?"
 a "Ja!"
 h2 "Na dann steig mal ein."
 scene bg hover_inside
 
 "..."
+
+##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
+
+label singlepickup:
+
+scene bg sp_outside
+
+sp "Freund, wie lautet dein Name?"
+python:
+    player_alias = renpy.input("Dein Name: ", length = 20)
+    if not player_alias:
+        player_alias = "SpielerX"
+a "Ich heiße [player_alias]."
+
+if regime == 'aristo':
+    sp "Ach, wunderbar. Mir wurde aufgetragen, dich abzuholen."
+if regime == 'anarch':
+    sp "Sehr gut. Miriam hat mich gebeten, dich abzuholen." 
+
+"Hündchen" "Wuff."
+if traditional:
+    "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
+
+##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
+
+label doublepickup:
+
+scene bg dp_outside
+
+dp1 "Genosse, wie heißt du?"
+python:
+    player_alias = renpy.input("Dein Name: ", length = 20)
+    if not player_alias:
+        player_alias = "SpielerX"
+a "Ich heiße [player_alias]."
+dp2 "Hihi, das klingt lustig."
+if traditional:
+    dp2 "Du bist wohl nich von hier."
+
+
+
+##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 return
