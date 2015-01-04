@@ -1,3 +1,4 @@
+# -*- mode: python -*-
 # -*- coding: utf-8 -*-       
 #LISTING IMAGES#
 image bg table = 'Images/screen1_choice.jpg'
@@ -60,7 +61,7 @@ label start:
             jump generate_regime_name
 
 
-#Wie kann ich Umlaute fehlerfrei darstellen? Habe sie ersmal umschrieben a la ae ue 
+#Wie kann ich Unicode statt ascii ausgeben? 
 label generate_regime_name:
 python:
     import random
@@ -82,7 +83,10 @@ python:
 
     regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
 
-"Auf deinem Pass steht: [regime_name] Namibias!"
+if regime == "techno":
+    "Dein Handheld trägt die Gravur {b}[regime_name] Namibias{\b}."
+else:
+    "Auf deinem Pass steht: {b}[regime_name] Namibias{\b}!"
 
 label backpacking:
 #Variable erstellen, in die die Items kommen
