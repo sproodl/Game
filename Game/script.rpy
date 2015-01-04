@@ -30,18 +30,33 @@ label start:
     "In welchem Regime werde ich leben?"
     menu:
         "In einer Aristokratie.":
-            "Ich liiieebe Mittelalterschmonzetten."
+            "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
             $ regime = "aristo"
             jump generate_regime_name
 
         "In einer Technokratie.":
-            "01110010100."
+            "01110010100."                           #Modemgeräusch
             $ regime = "techno"
             jump generate_regime_name
 
         "Im Turbokapitalismus.":
             "Diamond's are a girl's best friend."    #hier Jingle einbauen
             $ regime = "cap"
+            jump generate_regime_name
+
+        "Im Kommunismus.":
+            "Wer hat uns verraten? Sozialdemokraten!" #Kinderchor
+            $ regime = "comm"
+            jump generate_regime_name
+
+        "In der ANARCHIIIEEE!":
+            "Schweizstyle."                           #
+            $ regime = "anarch"
+            jump generate_regime_name
+
+        "Im Gottesstaat.":
+            "Amen."                                   #Gong, dann Allahuakbar
+            $ regime = "calif"
             jump generate_regime_name
 
 
