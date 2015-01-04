@@ -19,7 +19,7 @@ image bg dp_outside = 'Images/screen4d_dp_outside.png'
 define a = Character("[player_alias]")                   
 define t1 = Character("Taxifahrerin")
 define t2 = Character("Taxifahrer")
-define h1 = Character("Hovercrafpilot")
+define h1 = Character("Hovercraftpilot")
 define h2 = Character("Hovercraftpilotin")
 define sp = Character("Stephan") #muss eventuell nochmal aufgesplittet werden für Anarch und Aristo
 define dp1 = Character("Evelin")
@@ -107,9 +107,8 @@ else:
 
 scene bg table
 "Ich sollte meine Tasche packen."
-"Was nehme ich mit?"
 label backpacking:
-"Was noch?"
+"Was nehme ich mit?"
 menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
@@ -132,7 +131,7 @@ menu:
                 "{i}Bling.{/i}"
                 $ capitalist = True
                 $ items.add('rolex')
-    "Das Mario-Barrt-Buch." if 'book' not in items:
+    "Das Marius-Barrt-Buch." if 'book' not in items:
         "Höh, super lustig."
         $ simplemind = True
         $ items.add('book')
@@ -229,7 +228,40 @@ a "Ja!"
 t2 "Na dann steig mal ein."
 scene bg taxi_inside
 
-"..."
+t2 "Mann, mann, mann, heute sieht man mal wieder den Himmel vor lauter
+    Feinstaub nicht. Kann man sich gar nicht übers Wetter beschweren."
+menu:
+    "...":
+        t2 "Du ... wirkst, als wärst du eine Weile nich hier gewesen. Stimmt's?"
+        "Ich brumme ein 'Ja'."
+    "Ja, furchtbar! Das kenn ich ja so gar nicht.":
+        t2 "Früher war alles besser. Und damit meine ich {b}viel{/b} früher."
+        "Er zwinkert mir über den Rückspiegel zu."
+        t2 "Schon mal rausgekommen von zuhause?"
+        a "Oh ja!"
+    "Habe mich schon gewundert, seit wann der Nebel hier so grau ist.":
+        t2 "Warst wohl ne Weile nicht mehr in der Gegend."
+
+t2 "Wo warst du denn?"
+
+menu:
+    "Genau genommen bin ich gar nicht von hier.":
+        if traditional:
+            t2 "Sag bloß..."
+        menu:
+            "Ich bin vor einem halben Jahr hergezogen. Gestern habe ich den Einbürgerungstest gemacht... und bestanden.":
+                t2 "Gratuliere."
+            "Ich bin vor einem halben Jahr von drüben gekommen. Gestern wurde mein Asylantrag bewilligt.":
+                t2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
+    "Ach, ich war hier und da.":
+        "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
+    "Ich bin verdammt viel herumgekommen.":
+        "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
+        t2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
+        a "..."
+        "Ich sehe konzentriert aus dem Fenster."
+    "Ich habe einige Jahre gedient.":
+        t2 "Waren Sie "######################hier weiteren Regimenamen generieren? :)################
 
 "Der Fahrer stellt das Radio an."
 
