@@ -109,7 +109,9 @@ else:
 
 scene bg table
 "Ich sollte meine Tasche packen."
+
 label backpacking:
+
 $ save_name = "Ich sollte meine Tasche packen."         ##SPÄTER ÜBERALL SAVENAMES ANGEBEN######################################
 "Was nehme ich mit?"
 menu:
