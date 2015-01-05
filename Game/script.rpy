@@ -42,6 +42,8 @@ label start:
     $ asocial = False
     scene bg table_empty
 
+$ save_name = "Wo lebst du?"
+
     "In welchem Regime werde ich leben?"
     menu:
         "In einer Aristokratie.":
@@ -108,6 +110,7 @@ else:
 scene bg table
 "Ich sollte meine Tasche packen."
 label backpacking:
+$ save_name = "Ich sollte meine Tasche packen."         ##SPÄTER ÜBERALL SAVENAMES ANGEBEN######################################
 "Was nehme ich mit?"
 menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
