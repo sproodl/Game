@@ -30,51 +30,49 @@ define dp2 = Character("Lischen")
 #STARTING THE GAME#
 label start:
 #DEFINING VARIABLES USED HERE
-    $ player_alias = 'Spieler*in'
-    $ items = set()                                   #das ist der Rucksack
-    $ gigolo = False                                  #diese Eigenschaften können Spieler haben
-    $ religious = False
-    $ traditional = False
-    $ capitalist = False
-    $ simplemind = False
-    $ handicapped = False
-    $ techfreak = False   
-    $ asocial = False
-    scene bg table_empty
+$ player_alias = 'Spieler*in'
+$ items = set()                                   #das ist der Rucksack
+$ gigolo = False                                  #diese Eigenschaften können Spieler haben
+$ religious = False
+$ traditional = False
+$ capitalist = False
+$ simplemind = False
+$ handicapped = False
+$ techfreak = False   
+$ asocial = False
+scene bg table_empty
 
-$ save_name = "Wo lebst du?"
+"In welchem Regime werde ich leben?"
+menu:
+    "In einer Aristokratie.":
+        "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
+        $ regime = "aristo"
+        jump generate_regime_name
 
-    "In welchem Regime werde ich leben?"
-    menu:
-        "In einer Aristokratie.":
-            "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
-            $ regime = "aristo"
-            jump generate_regime_name
+    "In einer Technokratie.":
+        "01110010100."                           #Modemgeräusch
+        $ regime = "techno"
+        jump generate_regime_name
 
-        "In einer Technokratie.":
-            "01110010100."                           #Modemgeräusch
-            $ regime = "techno"
-            jump generate_regime_name
+    "Im Turbokapitalismus.":
+        "Diamond's are a girl's best friend."    #hier Jingle einbauen
+        $ regime = "cap"
+        jump generate_regime_name
 
-        "Im Turbokapitalismus.":
-            "Diamond's are a girl's best friend."    #hier Jingle einbauen
-            $ regime = "cap"
-            jump generate_regime_name
+    "Im Kommunismus.":
+        "Wer hat uns verraten? Sozialdemokraten!" #Kinderchor
+        $ regime = "comm"
+        jump generate_regime_name
 
-        "Im Kommunismus.":
-            "Wer hat uns verraten? Sozialdemokraten!" #Kinderchor
-            $ regime = "comm"
-            jump generate_regime_name
+    "In der ANARCHIIIEEE!":
+        "Schweizstyle."                           #
+        $ regime = "anarch"
+        jump generate_regime_name
 
-        "In der ANARCHIIIEEE!":
-            "Schweizstyle."                           #
-            $ regime = "anarch"
-            jump generate_regime_name
-
-        "Im Gottesstaat.":
-            "Amen."                                   #Gong, dann Allahuakbar
-            $ regime = "calif"
-            jump generate_regime_name
+    "Im Gottesstaat.":
+        "Amen."                                   #Gong, dann Allahuakbar
+        $ regime = "theo"
+        jump generate_regime_name
 
 
 #Wie kann ich Unicode statt ascii ausgeben? 
@@ -97,7 +95,7 @@ python:
         regime_traits[0] = regime_traits[0] + "es"
         regime_traits[1] = regime_traits[1] + "es"
 
-    regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
+    regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title[0]])
 
 if regime == "techno":
     "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{/b} eingraviert."

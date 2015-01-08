@@ -2,12 +2,11 @@ s	Treuhandgebiet
 s	Pachtgebiet
 s	Foederation
 s	Imperium
-s   Protektorat
+s	Protektorat
 w	Volksrepublik
 w	Republik
 w	Bundesrepublik
-m   Freistaat
-s   Territorium
-w   Konfoederation
-s   Reichskommissariat
-
+m	Freistaat
+s	Territorium
+w	Konfoederation
+s	Reichskommissariat
