@@ -95,7 +95,7 @@ python:
         regime_traits[0] = regime_traits[0] + "es"
         regime_traits[1] = regime_traits[1] + "es"
 
-    regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title[0]])
+    regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
 
 if regime == "techno":
     "Auf [player_alias]s Handheld ist {b}[regime_name] Namibias{/b} eingraviert."
