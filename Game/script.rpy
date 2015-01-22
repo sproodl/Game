@@ -125,7 +125,7 @@ menu:
         $ traditional = True
         $ items.add('tribal')
         "Ein selig Stück Heimat in der Fremde."
-    "Boah, ne Rolex!" if 'rolex' not in items:
+    "Boah, ne Rolecks!" if 'rolex' not in items:
         "Oh, ein Imitat. Nicht schlecht gemacht."
         menu:
             "Hm. Das Ding ist eigentlich echt hässlich. Was soll ich damit, wenn ich es nich mal für viel Geld verkaufen kann?":
