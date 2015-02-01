@@ -14,10 +14,18 @@ image bg my_hover = 'Images/screen6b_my_hover.png'
 image bg hover_inside = 'Images/screen7b_hover_inside.png'
 image bg sp_outside = 'Images/screen4c_sp_outside.png'
 image bg dp_outside = 'Images/screen4d_dp_outside.png'
+image bg mh_marjamshouse = 'Images/screen8_marjams_house.png'
+image bg mh_room2 = 'Images/screen9b_mh_room.png'
+image bg mh_room3 = 'Images/screen9c_mh_room.png'
+image bg mh_room1 = 'Images/screen9a_mh_hall.png'
+image bg mh_base = 'Images/screen10_mh_base.png'
+
 image items_tribal = im.FactorScale('Images/Trachtenhut.png', 0.3, 0.3)
 image items_rolex = im.FactorScale('Images/Rolex.png', .3, .3)
 image items_religious = im.FactorScale('Images/Religious.png', .3, .3)
 image items_condoms = im.FactorScale('Images/Kondome.png', .3, .3)
+
+image Marjam = 'Images/char_Marjam.png'
 
 #DEFINING CHARACTERS#
 define a = Character("[player_alias]")                   
@@ -28,6 +36,7 @@ define h2 = Character("Hovercraftpilotin")
 define sp = Character("Stephan") #muss eventuell nochmal aufgesplittet werden für Anarch und Aristo
 define dp1 = Character("Evelin")
 define dp2 = Character("Lischen")
+define m = Character ("Marjam")
 
 #NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES?
 
@@ -370,8 +379,4 @@ if traditional:
 jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
-label house_marjam:
 
-"ENDE"
-
-return
