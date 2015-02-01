@@ -12,6 +12,7 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
   Malus im Kommunismus, Bonus im Kalifat
 * traditional = True
   wird in fast jedem Dialog auf Herkunft angesprochen
+  Bonus für Theo und Aristo, Malus für Techno
 * capitalist = True
   bekommt die Uhrzeit angezeigt, kann einen Wecker stellen, sieht den Inhalt des Geldbeutels
 * simple_mind = True
@@ -41,6 +42,8 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
 * SUCCESS
   * money
     Geld.++ im Kap, + in Aristo, - in Komm
+    In manchen Situationen und Minigames kann man Geld verdienen. Die Höhe hängt 
+    davon ab, wie systemkonform man im geldbasierten System bisher war.
   * blunt
     unhöflich, direkt, ++ in Anarch, + in Techno, - in Komm, -- in Aristo
   * pious
