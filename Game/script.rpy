@@ -194,12 +194,14 @@ menu:
                 pass
                 $ techfreak = True
                 $ items.add('phone')
+                $ techno += 7
             "Wahrscheinlich ist es kaputt. Ich lasse es liegen.":
                 pass
     "Top, mehr brauche ich nicht.":           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
         $ number_of_items = len(items)
         if number_of_items >= 1:
             $ asocial = True
+            $ comm -= 5
         jump gender 
 
 jump backpacking                                        #sorgt dafür, dass nach der Auswahl eines Items wieder mit dem
@@ -217,14 +219,18 @@ menu:
         pass
         $ gender = "male"
         $ player_alias = "Spieler"
+        $ aristo += 2
+        $ theo += 4
     "gehe nach rechts.":
         pass
         $ gender = "female"
         $ player_alias = "Spielerin"
+        $ theo -= 3
     "Eene meene muh und ich ...nehme irgendeine Tür.":
         pass
         $ gender = "undefined"
         $ player_alias = "SpielerX"
+        $ theo -= 5
 
 if handicapped:
     "Lieber gleich meine Tablette nehmen, bevor ich sie vergesse."
@@ -255,6 +261,9 @@ python:
     player_alias = renpy.input("Und auf welchen Namen?", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
+        $ blunt += 2
+        $ flirty -= 1
+        $ buddy -= 1
 a "Auf den Namen [player_alias]."
 
 t1 "..."
@@ -282,11 +291,13 @@ menu:
     "...":
         t2 "Du ... wirkst, als wärst du eine Weile nich hier gewesen. Stimmt's?"
         "Ich brumme ein 'Ja'."
+        $ buddy -= 1
     "Ja, furchtbar! Das kenn ich ja so gar nicht.":
         t2 "Früher war alles besser. Und damit meine ich {b}viel{/b} früher."
         "Er zwinkert mir über den Rückspiegel zu."
         t2 "Schon mal rausgekommen von zuhause?"
         a "Oh ja!"
+        $ buddy += 2
     "Habe mich schon gewundert, seit wann der Nebel hier so grau ist.":
         t2 "Warst wohl ne Weile nicht mehr in der Gegend."
 
@@ -303,15 +314,18 @@ menu:
                 t2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
     "Ach, ich war hier und da.":
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
+        $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
+        $ pious_trad -= 1
     "Ich habe einige Jahre gedient.":
         t2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
         "{i}Der Taxifahrer salutiert und blickt ernst in seinen Rückspiegel.{/i}"
         "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
+        $ pious_trad += 2
 
 "Der Fahrer stellt das Radio an."
 
@@ -335,6 +349,9 @@ python:
     player_alias = renpy.input("Und auf welchen Namen?", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
+        $ blunt += 2
+        $ flirty -= 1
+        $ buddy -= 1
 a "Auf den Namen [player_alias]."
 
 h1 "..."
@@ -370,6 +387,9 @@ python:
     player_alias = renpy.input("Dein Name: ", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
+        $ blunt += 2
+        $ flirty -= 1
+        $ buddy -= 1
 a "Ich heiße [player_alias]."
 
 if regime == 'aristo':
@@ -393,6 +413,9 @@ python:
     player_alias = renpy.input("Dein Name: ", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
+        $ blunt += 2
+        $ flirty -= 1
+        $ buddy -= 1
 a "Ich heiße [player_alias]."
 dp2 "Hihi, das klingt lustig."
 if traditional:

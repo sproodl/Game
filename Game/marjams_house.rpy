@@ -46,9 +46,20 @@ m "Du kannst hier schlafen und essen, bis du eine permanente Bleibe gefunden has
 
 menu:
     "Was meinst du mit der 'derzeitigen politischen Lage'?":
+        pass
+        $ inquisitive += 3
     "Wo ist mein Zimmer?":
+        pass
+        $ blunt += 2
     "Wie hoch ist die Miete? In welchen Raten und bei welchem Zins soll ich sie abstottern?":
+        pass
+        $ inquisitive += 1
     "Wie großzügig! Darf ich dir zum Dank einen traditionellen Tanz vorführen?" if 'tribal' in items:
+        pass
+        $ buddy += 3
+        $ pious_trad += 5
+
+m "Ich bringe dich jetzt zu deinem Zimmer
     
 
 
