@@ -373,7 +373,63 @@ a "Ja!"
 h2 "Na dann steig mal ein."
 scene bg hover_inside
 
-"..."
+h2 "Mensch, heute sieht man mal wieder den Himmel vor lauter
+    Nanobots nicht. Ich wünschte, sie würden das DVG endlich auf Microdrohnen ausweiten!"
+menu:
+    "...":
+        h2 "Du ... wirkst, als wärst du eine Weile nich hier gewesen. Stimmt's?"
+        "Ich brumme ein 'Ja'."
+        $ buddy -= 1
+    "Ja, furchtbar! Das kenn ich ja so gar nicht.":
+        h2 "Früher war alles besser. Und damit meine ich {b}viel{/b} früher."
+        "Sie zwinkert mir über den Rückspiegel zu."
+        h2 "Schon mal rausgekommen von zuhause?"
+        a "Oh ja!"
+        $ buddy += 2
+    "Habe mich schon gewundert, seit wann der Nebel hier so grau ist.":
+        h2 "Warst wohl ne Weile nicht mehr in der Gegend."
+    "Wofür steht denn DVG?":
+        h2 "Für Drohnenverkehrsgesetz. Wie ist das denn an dir vorbeigegangen? Warste ne Weile nich hier?"
+        menu:
+        a "Äh, ja, so in etwa.":
+        pass
+        $ inquisitive += 3
+        a "Wow, was du alles weißt! Und deine Meschenkenntnis. Ich war echt weg...":
+        pass
+        $ buddy += 3
+
+h2 "Wo warst du denn?"
+
+menu:
+    "Genau genommen bin ich gar nicht von hier.":
+        if traditional:
+            h2 "Sag bloß..."
+        menu:
+            "Ich bin vor einem halben Jahr hergezogen. Gestern habe ich den Einbürgerungstest gemacht... und bestanden.":
+                h2 "Gratuliere."
+            "Ich bin vor einem halben Jahr von drüben gekommen. Gestern wurde mein Asylantrag bewilligt.":
+                h2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
+    "Ach, ich war hier und da.":
+        "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
+        $ buddy -= 1
+    "Ich bin verdammt viel herumgekommen.":
+        "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
+        h2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
+        a "... (Ich hülle mich in Schweigen)..."
+        "Ich sehe konzentriert aus dem Fenster."
+        $ pious_trad -= 1
+    "Ich habe einige Jahre gedient.":
+        h2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
+        "{i}Die Pilotin salutiert und blickt ernst in ihren Rückspiegel.{/i}"
+        "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
+        $ pious_trad += 2
+
+"Die Pilotin stellt das Radio an."
+
+#HIER RADIOSOUNDS REINTUN#
+
+h2 "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
+
 jump house_marjam
 
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
