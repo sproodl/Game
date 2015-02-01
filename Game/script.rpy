@@ -125,7 +125,7 @@ menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
         $ items.add('condoms')                          #und 'condoms' wird hinzugefügt zu 'items'
-        hide items_conmdoms
+        hide items_condoms
         "Safer Sex ist bester Sex."
     "Den Schlüsselanhänger mit religiösem Symbol." if 'key' not in items:
         $ religious = True
