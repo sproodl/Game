@@ -14,6 +14,10 @@ image bg my_hover = 'Images/screen6b_my_hover.png'
 image bg hover_inside = 'Images/screen7b_hover_inside.png'
 image bg sp_outside = 'Images/screen4c_sp_outside.png'
 image bg dp_outside = 'Images/screen4d_dp_outside.png'
+image items_tribal = im.FactorScale('Images/Trachtenhut.png', 0.3, 0.3)
+image items_rolex = im.FactorScale('Images/Rolex.png', .3, .3)
+image items_religious = im.FactorScale('Images/Religious.png', .3, .3)
+image items_condoms = im.FactorScale('Images/Kondome.png', .3, .3)
 
 #DEFINING CHARACTERS#
 define a = Character("[player_alias]")                   
@@ -105,7 +109,12 @@ else:
     "Auf [player_alias]s Pass steht: {b}[regime_name] Namibias{/b}!"
 
 
-scene bg table
+scene bg table_empty
+show items_tribal at Position(xpos= 0.7, xanchor= 0.5, ypos= 0.5, yanchor= 0.5)
+show items_rolex at Position(xpos= 0.2, xanchor= .5, ypos= .7, yanchor= .5)
+show items_religious at Position(xpos= .1, xanchor= .5, ypos= .8, yanchor= .5)
+show items_condoms at Position(xpos= .6, xanchor= .5, ypos= .6, yanchor= .5)
+#SPÄTER ANIMATIONSPFADE FÜR IN TASCHE GEPACKTE ITEMS EINFÜGEN
 "Ich sollte meine Tasche packen."
 
 label backpacking:
@@ -116,14 +125,17 @@ menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
         $ items.add('condoms')                          #und 'condoms' wird hinzugefügt zu 'items'
+        hide items_conmdoms
         "Safer Sex ist bester Sex."
     "Den Schlüsselanhänger mit religiösem Symbol." if 'key' not in items:
         $ religious = True
         $ items.add('key')
+        hide items_religious
         "Vielleicht bringt er mir Glück."
     "Den Trachtenhut." if 'tribal' not in items:
         $ traditional = True
         $ items.add('tribal')
+        hide items_tribal
         "Ein selig Stück Heimat in der Fremde."
     "Boah, ne Rolecks!" if 'rolex' not in items:
         "Oh, ein Imitat. Nicht schlecht gemacht."
@@ -134,6 +146,7 @@ menu:
                 "{i}Bling.{/i}"
                 $ capitalist = True
                 $ items.add('rolex')
+                hide items_rolex
     "Das Marius-Barrt-Buch." if 'book' not in items:
         "Höh, super lustig."
         $ simplemind = True
