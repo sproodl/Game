@@ -40,6 +40,17 @@ show Marjam
 
 a "..."
 
+m "Willkommen in Marjams Pension, einem der traditionsreichsten Bordelle des Landes."
+m "Aufgrund der derzeitigen politischen Lage sind wir... nicht ganz ausgebucht. Deshalb haben wir entschieden, Leute wie dich zu beherbergen."
+m "Du kannst hier schlafen und essen, bis du eine permanente Bleibe gefunden hast. Im Gegenzug erwarte ich, für die Unterbringungskosten entschädigt zu werden, sobald du einen Job hast. Und dass du dich unsichtbar machst, wenn Kunden im Haus sind. Das wäre dann alles. Fragen?"
+
+menu:
+    "Was meinst du mit der 'derzeitigen politischen Lage'?":
+    "Wo ist mein Zimmer?":
+    "Wie hoch ist die Miete? In welchen Raten und bei welchem Zins soll ich sie abstottern?":
+    "Wie großzügig! Darf ich dir zum Dank einen traditionellen Tanz vorführen?" if 'tribal' in items:
+    
+
 
 "ENDE"
 

@@ -53,6 +53,13 @@ $ simplemind = False
 $ handicapped = False
 $ techfreak = False   
 $ asocial = False
+$ money= 0                              #Erfolgsvariablen
+$ blunt= 0                              #direkte statt höfliche Ausdrucksweise
+$ buddy= 0                              #verbündendes Verhalten
+$ flirty= 0
+$ inquisitive= 0                        #nachfragendes, bohrendes Verhalten
+$ pious_trad= 0                         #frommes oder traditionelles Verhalten
+
 scene bg table_empty
 
 "In welchem Regime werde ich leben?"
@@ -134,16 +141,23 @@ menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
         $ items.add('condoms')                          #und 'condoms' wird hinzugefügt zu 'items'
+        $ anarch += 5
+        $ theo -= 5
         hide items_condoms
         "Safer Sex ist bester Sex."
     "Den Schlüsselanhänger mit religiösem Symbol." if 'key' not in items:
         $ religious = True
         $ items.add('key')
+        $ theo += 5
+        $ comm -= 5
         hide items_religious
         "Vielleicht bringt er mir Glück."
     "Den Trachtenhut." if 'tribal' not in items:
         $ traditional = True
         $ items.add('tribal')
+        $ theo += 5
+        $ aristo += 5
+        $ techno -= 5
         hide items_tribal
         "Ein selig Stück Heimat in der Fremde."
     "Boah, ne Rolecks!" if 'rolex' not in items:
@@ -151,19 +165,28 @@ menu:
         menu:
             "Hm. Das Ding ist eigentlich echt hässlich. Was soll ich damit, wenn ich es nich mal für viel Geld verkaufen kann?":
                 "Ich lasse die Uhr liegen."
+                    $ comm += 5
             "Merkt keiner, ich nehme sie mit.":
                 "{i}Bling.{/i}"
                 $ capitalist = True
                 $ items.add('rolex')
+                $ cap += 5
+                $ comm -= 5
                 hide items_rolex
     "Das Marius-Barrt-Buch." if 'book' not in items:
         "Höh, super lustig."
         $ simplemind = True
         $ items.add('book')
+        $ aristo += 2
+        $ theo += 2
+        $ techno -=1
     "Die Medikamente." if 'meds' not in items:
         "Die brauche ich für mein chronisches Dingsda."
         $ handicapped = True
         $ items.add('meds')
+        $ theo += 2
+        $ cap -= 5
+        $ techno -= 2
     "Das Telefon." if 'phone' not in items:
         "Hm, es geht nicht an. Vielleicht ist der Akku leer."
         menu:

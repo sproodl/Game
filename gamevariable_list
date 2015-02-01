@@ -13,7 +13,7 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
 * traditional = True
   wird in fast jedem Dialog auf Herkunft angesprochen
 * capitalist = True
-  bekommt die Uhrzeit angezeigt, kann einen Wecker stellen
+  bekommt die Uhrzeit angezeigt, kann einen Wecker stellen, sieht den Inhalt des Geldbeutels
 * simple_mind = True
   man ist Unterschicht/dumm. Bestimmte komplizierte Dialoginhalte (Pläne, Technik etc.) werden verrauscht. Man kann einmalig um Wiederholung bitten,
   , versteht dann aber immernoch nicht
@@ -38,3 +38,16 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
   bei Bisexualität: Bonus in Anarchie, Malus in Kalifat
 * count_comp_m = 
 * count_comp_f =
+* SUCCESS
+  * money
+    Geld.++ im Kap, + in Aristo, - in Komm
+  * blunt
+    unhöflich, direkt, ++ in Anarch, + in Techno, - in Komm, -- in Aristo
+  * pious
+    fromm und/oder traditionell, ++ in Theo und Aristo, -- in Anarch, - in Techno
+  * inquisitive
+    hinterfragend, ++ in Techno, + in Anarch, -- in Aristo und Theo, - Komm
+  * buddy
+    verbündend, + in Komm, - in Anarch
+  * flirty
+    + in Anarch und Komm, - in Aristo, -- in Theo
