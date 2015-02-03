@@ -59,6 +59,13 @@ $ buddy= 0                              #verbündendes Verhalten
 $ flirty= 0
 $ inquisitive= 0                        #nachfragendes, bohrendes Verhalten
 $ pious_trad= 0                         #frommes oder traditionelles Verhalten
+$ conf_aristo = 0 + pious_trad + .7* money - blunt - inquisitive - .5* flirty
+$ conf_anarch = 0 + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy
+$ conf_cap = 0 + money
+$ conf_comm = 0 + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive
+$ conf_theo =0 + pious_trad - .8* inquisitive - flirty
+$ conf_techno = 0 + inquisitive + .7* blunt - .5* pious_trad
+
 
 scene bg table_empty
 
@@ -141,23 +148,23 @@ menu:
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
         $ items.add('condoms')                          #und 'condoms' wird hinzugefügt zu 'items'
-        $ anarch += 5
-        $ theo -= 5
+        $ conf_anarch += 5
+        $ conf_theo -= 5
         hide items_condoms
         "Safer Sex ist bester Sex."
     "Den Schlüsselanhänger mit religiösem Symbol." if 'key' not in items:
         $ religious = True
         $ items.add('key')
-        $ theo += 5
-        $ comm -= 5
+        $ conf_theo += 5
+        $ conf_comm -= 5
         hide items_religious
         "Vielleicht bringt er mir Glück."
     "Den Trachtenhut." if 'tribal' not in items:
         $ traditional = True
         $ items.add('tribal')
-        $ theo += 5
-        $ aristo += 5
-        $ techno -= 5
+        $ conf_theo += 5
+        $ conf_aristo += 5
+        $ conf_techno -= 5
         hide items_tribal
         "Ein selig Stück Heimat in der Fremde."
     "Boah, ne Rolecks!" if 'rolex' not in items:
@@ -165,28 +172,28 @@ menu:
         menu:
             "Hm. Das Ding ist eigentlich echt hässlich. Was soll ich damit, wenn ich es nich mal für viel Geld verkaufen kann?":
                 "Ich lasse die Uhr liegen."
-                    $ comm += 5
+                $ conf_comm += 5
             "Merkt keiner, ich nehme sie mit.":
                 "{i}Bling.{/i}"
                 $ capitalist = True
                 $ items.add('rolex')
-                $ cap += 5
-                $ comm -= 5
+                $ conf_cap += 5
+                $ conf_comm -= 5
                 hide items_rolex
     "Das Marius-Barrt-Buch." if 'book' not in items:
         "Höh, super lustig."
         $ simplemind = True
         $ items.add('book')
-        $ aristo += 2
-        $ theo += 2
-        $ techno -=1
+        $ conf_aristo += 2
+        $ conf_theo += 2
+        $ conf_techno -=1
     "Die Medikamente." if 'meds' not in items:
         "Die brauche ich für mein chronisches Dingsda."
         $ handicapped = True
         $ items.add('meds')
-        $ theo += 2
-        $ cap -= 5
-        $ techno -= 2
+        $ conf_theo += 2
+        $ conf_cap -= 5
+        $ conf_techno -= 2
     "Das Telefon." if 'phone' not in items:
         "Hm, es geht nicht an. Vielleicht ist der Akku leer."
         menu:
@@ -194,15 +201,24 @@ menu:
                 pass
                 $ techfreak = True
                 $ items.add('phone')
-                $ techno += 7
+                $ conf_techno += 7
             "Wahrscheinlich ist es kaputt. Ich lasse es liegen.":
                 pass
     "Top, mehr brauche ich nicht.":           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
         $ number_of_items = len(items)
         if number_of_items >= 1:
             $ asocial = True
-            $ comm -= 5
-        jump gender 
+            $ conf_comm -= 5
+
+"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
+"Allmacht" "... [conf_cap] (Kapitalismus)"
+"Allmacht" "... [conf_anarch] (Anarchie)"
+"Allmacht" "... [conf_aristo] (Aristokratie)"
+"Allmacht" "... [conf_techno] (Technokratie)"
+"Allmacht" "... [conf_theo] (Theokratie)"
+
+
+jump gender 
 
 jump backpacking                                        #sorgt dafür, dass nach der Auswahl eines Items wieder mit dem
                                                         #Packen begonnen wird
@@ -219,18 +235,18 @@ menu:
         pass
         $ gender = "male"
         $ player_alias = "Spieler"
-        $ aristo += 2
-        $ theo += 4
+        $ conf_aristo += 2
+        $ conf_theo += 4
     "gehe nach rechts.":
         pass
         $ gender = "female"
         $ player_alias = "Spielerin"
-        $ theo -= 3
+        $ conf_theo -= 3
     "Eene meene muh und ich ...nehme irgendeine Tür.":
         pass
         $ gender = "undefined"
         $ player_alias = "SpielerX"
-        $ theo -= 5
+        $ conf_theo -= 5
 
 if handicapped:
     "Lieber gleich meine Tablette nehmen, bevor ich sie vergesse."
@@ -238,6 +254,13 @@ if handicapped:
     "Bitteres Zeug."
 
 "Na dann mal los."
+
+"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
+"Allmacht" "... [conf_cap] (Kapitalismus)"
+"Allmacht" "... [conf_anarch] (Anarchie)"
+"Allmacht" "... [conf_aristo] (Aristokratie)"
+"Allmacht" "... [conf_techno] (Technokratie)"
+"Allmacht" "... [conf_theo] (Theokratie)"
 
 if (regime == 'cap') or (regime == 'theo'):
     jump taxipickup
@@ -251,7 +274,7 @@ if (regime == 'anarch') or (regime == 'aristo'):
 
 label taxipickup:
 
-scene bg taxi_outside                               #HIER ABHÄNGIG VOM REGIME UND ZUFÄLLIG GEWÄHLTEM EINSTIEG MACHEN? Taxi im Kap.
+scene bg taxi_outside
 t1 "Hey, Du!"
 a "Ja, bitte?"
 t1 "Hast du n Taxi bestellt?"
@@ -261,9 +284,9 @@ python:
     player_alias = renpy.input("Und auf welchen Namen?", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
-        $ blunt += 2
-        $ flirty -= 1
-        $ buddy -= 1
+        blunt += 2
+        flirty -= 1
+        buddy -= 1
 a "Auf den Namen [player_alias]."
 
 t1 "..."
@@ -317,7 +340,7 @@ menu:
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
-        t2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
+        t2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
@@ -348,10 +371,11 @@ h1 "Und auf welchen Namen?"
 python:
     player_alias = renpy.input("Und auf welchen Namen?", length = 20)
     if not player_alias:
+        blunt += 2
+        flirty -= 1
+        buddy -= 1
         player_alias = "SpielerX"
-        $ blunt += 2
-        $ flirty -= 1
-        $ buddy -= 1
+        
 a "Auf den Namen [player_alias]."
 
 h1 "..."
@@ -389,14 +413,14 @@ menu:
     "Habe mich schon gewundert, seit wann der Nebel hier so grau ist.":
         h2 "Warst wohl ne Weile nicht mehr in der Gegend."
     "Wofür steht denn DVG?":
+        $ inquisitive += 3
         h2 "Für Drohnenverkehrsgesetz. Wie ist das denn an dir vorbeigegangen? Warste ne Weile nich hier?"
         menu:
-        a "Äh, ja, so in etwa.":
-        pass
-        $ inquisitive += 3
-        a "Wow, was du alles weißt! Und deine Meschenkenntnis. Ich war echt weg...":
-        pass
-        $ buddy += 3
+            "Äh, ja, so in etwa.":
+                pass
+            "Wow, was du alles weißt! Und deine Meschenkenntnis. Ich war echt weg...":
+                pass
+                $ buddy += 3
 
 h2 "Wo warst du denn?"
 
@@ -414,7 +438,7 @@ menu:
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
-        h2 "Für einen Weltenbummler sehen Sie aber recht... spärlich betucht aus."
+        h2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
@@ -443,9 +467,9 @@ python:
     player_alias = renpy.input("Dein Name: ", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
-        $ blunt += 2
-        $ flirty -= 1
-        $ buddy -= 1
+        blunt += 2
+        flirty -= 1
+        buddy -= 1
 a "Ich heiße [player_alias]."
 
 if regime == 'aristo':
@@ -469,14 +493,15 @@ python:
     player_alias = renpy.input("Dein Name: ", length = 20)
     if not player_alias:
         player_alias = "SpielerX"
-        $ blunt += 2
-        $ flirty -= 1
-        $ buddy -= 1
+        blunt += 2
+        flirty -= 1
+        buddy -= 1
 a "Ich heiße [player_alias]."
 dp2 "Hihi, das klingt lustig."
 if traditional:
     dp2 "Du bist wohl nich von hier."
 
+dp1 "Wir begleiten dich jetzt zu Marjam."
 
 jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################

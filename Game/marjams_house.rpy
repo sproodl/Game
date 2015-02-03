@@ -5,21 +5,28 @@ label house_marjam:
 
 scene bg mh_marjamshouse
 
+"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
+"Allmacht" "... [conf_cap] (Kapitalismus)"
+"Allmacht" "... [conf_anarch] (Anarchie)"
+"Allmacht" "... [conf_aristo] (Aristokratie)"
+"Allmacht" "... [conf_techno] (Technokratie)"
+"Allmacht" "... [conf_theo] (Theokratie)"
+
 "Wow. Schönes Haus. Wirkt sehr einladend und gemütlich durch diese Beleuchtung. Bin mal gespannt, was diese Marjam für eine ist."
 
 "Einfach mal Klingeln gehen." #KLINGELGERÄUSCH EINFÜGEN
 
-'Stimme' "[player_alias]?"
+"Stimme" "[player_alias]?"
 
-a "Ja, das bin ich! Hallo, sind Sie Marjam?"
+a "Ja, das bin ich! Hallo, bist du Marjam?"
 m "Die bin ich."
 
 if regime == "comm":
-    m "Sie sollten sich angewöhnen, mich mit 'Genossin' anzusprechen."
+    m "Du solltest es dir angewöhnen, mich mit ''Genossin'' anzusprechen."
     a "Verzeihung, Genossin!"
-    m "Sie brauchen nicht gleich zu salutieren, verstimmtnochmal."
+    m "Du brauchst nicht gleich zu salutieren, verstimmtnochmal."
 
-m "Kommen Sie rein. Immer den Gang entlang, ich empfange Sie im Restaurant."
+m "Komm rein. Immer den Gang entlang, ich empfange dich im Restaurant."
 
 # GERÄUSCH VON SCHRITTEN
 
@@ -45,7 +52,7 @@ m "Aufgrund der derzeitigen politischen Lage sind wir... nicht ganz ausgebucht. 
 m "Du kannst hier schlafen und essen, bis du eine permanente Bleibe gefunden hast. Im Gegenzug erwarte ich, für die Unterbringungskosten entschädigt zu werden, sobald du einen Job hast. Und dass du dich unsichtbar machst, wenn Kunden im Haus sind. Das wäre dann alles. Fragen?"
 
 menu:
-    "Was meinst du mit der 'derzeitigen politischen Lage'?":
+    "Was meinst du mit der ''derzeitigen politischen Lage''?":
         pass
         $ inquisitive += 3
     "Wo ist mein Zimmer?":
@@ -59,9 +66,14 @@ menu:
         $ buddy += 3
         $ pious_trad += 5
 
-m "Ich bringe dich jetzt zu deinem Zimmer
+m "Ich bringe dich jetzt zu deinem Zimmer"
     
-
+"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
+"Allmacht" "... [conf_cap] (Kapitalismus)"
+"Allmacht" "... [conf_anarch] (Anarchie)"
+"Allmacht" "... [conf_aristo] (Aristokratie)"
+"Allmacht" "... [conf_techno] (Technokratie)"
+"Allmacht" "... [conf_theo] (Theokratie)"
 
 "ENDE"
 

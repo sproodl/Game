@@ -39,7 +39,7 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
   bei Bisexualität: Bonus in Anarchie, Malus in Kalifat
 * count_comp_m = 
 * count_comp_f =
-* SUCCESS
+* TODO SUCCESS
   * money
     Geld.++ im Kap, + in Aristo, - in Komm
     In manchen Situationen und Minigames kann man Geld verdienen. Die Höhe hängt 
@@ -54,3 +54,7 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
     verbündend, + in Komm, - in Anarch
   * flirty
     + in Anarch und Komm, - in Aristo, -- in Theo
+  * KONFORMISMUSVARIABLE
+    je nach Regime fließen die Kriterien unterschiedlich stark ein (*0, *0.5, *0.75?)
+    es geht von Minus bis plus?
+    Wie Bereich definieren?? (siehe Plotpunkt "Verratsoption")
