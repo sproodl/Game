@@ -45,7 +45,6 @@ label start:
 #DEFINING VARIABLES USED HERE
 python:
     player_alias = 'Spieler*in'
-    regime = False
     items = set()                                   #das ist der Rucksack
     gigolo = False                                  #diese Eigenschaften können Spieler haben
     religious = False
@@ -68,17 +67,23 @@ python:
     conf_theo =0
     conf_techno = 0
     def conf_calc_aristo():
-        conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
+        conf_temp_aristo = conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
+        return conf_temp_aristo;
     def conf_calc_anarch():
-        conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
+        conf_temp_anarch = conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
+        return conf_temp_anarch;
     def conf_calc_cap():
-        conf_cap + money;
+        conf_temp_cap = conf_cap + money;
+        return conf_temp_cap;
     def conf_calc_comm():
-        conf_comm + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive;
+        conf_temp_comm = conf_comm + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive;
+        return conf_temp_comm;
     def conf_calc_theo():
-        conf_theo + pious_trad - .8* inquisitive - flirty;
+        conf_temp_theo = conf_theo + pious_trad - .8* inquisitive - flirty;
+        return conf_temp_theo;
     def conf_calc_techno():
-        conf_techno + inquisitive + .7* blunt - .5* pious_trad;
+        conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
+        return conf_temp_techno;
 
 scene bg table_empty
 
@@ -238,11 +243,11 @@ python:
     conf_calc_techno()
 
 "Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
-"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
-"Allmacht" "... [conf_calc_anarch] (Anarchie)"
-"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
-"Allmacht" "... [conf_calc_techno] (Technokratie)"
-"Allmacht" "... [conf_calc_theo] (Theokratie)"
+"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
+"Allmacht" "... [conf_temp_anarch] (Anarchie)"
+"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
+"Allmacht" "... [conf_temp_techno] (Technokratie)"
+"Allmacht" "... [conf_temp_theo] (Theokratie)"
 
 scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."
