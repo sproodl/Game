@@ -5,12 +5,20 @@ label house_marjam:
 
 scene bg mh_marjamshouse
 
-"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
-"Allmacht" "... [conf_cap] (Kapitalismus)"
-"Allmacht" "... [conf_anarch] (Anarchie)"
-"Allmacht" "... [conf_aristo] (Aristokratie)"
-"Allmacht" "... [conf_techno] (Technokratie)"
-"Allmacht" "... [conf_theo] (Theokratie)"
+python:
+    conf_calc_comm
+    conf_calc_cap
+    conf_calc_anarch
+    conf_calc_aristo
+    conf_calc_theo
+    conf_calc_techno
+
+"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
+"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
+"Allmacht" "... [conf_calc_anarch] (Anarchie)"
+"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
+"Allmacht" "... [conf_calc_techno] (Technokratie)"
+"Allmacht" "... [conf_calc_theo] (Theokratie)"
 
 "Wow. Schönes Haus. Wirkt sehr einladend und gemütlich durch diese Beleuchtung. Bin mal gespannt, was diese Marjam für eine ist."
 
@@ -67,13 +75,21 @@ menu:
         $ pious_trad += 5
 
 m "Ich bringe dich jetzt zu deinem Zimmer"
-    
-"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
-"Allmacht" "... [conf_cap] (Kapitalismus)"
-"Allmacht" "... [conf_anarch] (Anarchie)"
-"Allmacht" "... [conf_aristo] (Aristokratie)"
-"Allmacht" "... [conf_techno] (Technokratie)"
-"Allmacht" "... [conf_theo] (Theokratie)"
+
+python:
+    conf_calc_comm
+    conf_calc_cap
+    conf_calc_anarch
+    conf_calc_aristo
+    conf_calc_theo
+    conf_calc_techno
+
+"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
+"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
+"Allmacht" "... [conf_calc_anarch] (Anarchie)"
+"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
+"Allmacht" "... [conf_calc_techno] (Technokratie)"
+"Allmacht" "... [conf_calc_theo] (Theokratie)"
 
 "ENDE"
 

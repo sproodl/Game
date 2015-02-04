@@ -43,29 +43,42 @@ define m = Character ("Marjam")
 #STARTING THE GAME#
 label start:
 #DEFINING VARIABLES USED HERE
-$ player_alias = 'Spieler*in'
-$ items = set()                                   #das ist der Rucksack
-$ gigolo = False                                  #diese Eigenschaften können Spieler haben
-$ religious = False
-$ traditional = False
-$ capitalist = False
-$ simplemind = False
-$ handicapped = False
-$ techfreak = False   
-$ asocial = False
-$ money= 0                              #Erfolgsvariablen
-$ blunt= 0                              #direkte statt höfliche Ausdrucksweise
-$ buddy= 0                              #verbündendes Verhalten
-$ flirty= 0
-$ inquisitive= 0                        #nachfragendes, bohrendes Verhalten
-$ pious_trad= 0                         #frommes oder traditionelles Verhalten
-$ conf_aristo = 0 + pious_trad + .7* money - blunt - inquisitive - .5* flirty
-$ conf_anarch = 0 + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy
-$ conf_cap = 0 + money
-$ conf_comm = 0 + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive
-$ conf_theo =0 + pious_trad - .8* inquisitive - flirty
-$ conf_techno = 0 + inquisitive + .7* blunt - .5* pious_trad
-
+python:
+    player_alias = 'Spieler*in'
+    regime = False
+    items = set()                                   #das ist der Rucksack
+    gigolo = False                                  #diese Eigenschaften können Spieler haben
+    religious = False
+    traditional = False
+    capitalist = False
+    simplemind = False
+    handicapped = False
+    techfreak = False   
+    asocial = False
+    money = 0                              #Erfolgsvariablen
+    blunt = 0                              #direkte statt höfliche Ausdrucksweise
+    buddy = 0                              #verbündendes Verhalten
+    flirty = 0
+    inquisitive = 0                        #nachfragendes, bohrendes Verhalten
+    pious_trad = 0                         #frommes oder traditionelles Verhalten
+    conf_aristo = 0
+    conf_anarch = 0
+    conf_cap = 0
+    conf_comm = 0
+    conf_theo =0
+    conf_techno = 0
+    def conf_calc_aristo():
+        conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
+    def conf_calc_anarch():
+        conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
+    def conf_calc_cap():
+        conf_cap + money;
+    def conf_calc_comm():
+        conf_comm + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive;
+    def conf_calc_theo():
+        conf_theo + pious_trad - .8* inquisitive - flirty;
+    def conf_calc_techno():
+        conf_techno + inquisitive + .7* blunt - .5* pious_trad;
 
 scene bg table_empty
 
@@ -209,20 +222,28 @@ menu:
         if number_of_items >= 1:
             $ asocial = True
             $ conf_comm -= 5
-
-"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
-"Allmacht" "... [conf_cap] (Kapitalismus)"
-"Allmacht" "... [conf_anarch] (Anarchie)"
-"Allmacht" "... [conf_aristo] (Aristokratie)"
-"Allmacht" "... [conf_techno] (Technokratie)"
-"Allmacht" "... [conf_theo] (Theokratie)"
-
-
-jump gender 
+            $ conf_anarch += 3
+            jump gender 
 
 jump backpacking                                        #sorgt dafür, dass nach der Auswahl eines Items wieder mit dem
                                                         #Packen begonnen wird
 label gender:
+
+python:
+    conf_calc_comm()
+    conf_calc_cap()
+    conf_calc_anarch()
+    conf_calc_aristo()
+    conf_calc_theo()
+    conf_calc_techno()
+
+"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
+"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
+"Allmacht" "... [conf_calc_anarch] (Anarchie)"
+"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
+"Allmacht" "... [conf_calc_techno] (Technokratie)"
+"Allmacht" "... [conf_calc_theo] (Theokratie)"
+
 scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."
 
@@ -255,12 +276,20 @@ if handicapped:
 
 "Na dann mal los."
 
-"Allmacht" "Dein Punktestand beträgt [conf_comm] (Kommunismus)"
-"Allmacht" "... [conf_cap] (Kapitalismus)"
-"Allmacht" "... [conf_anarch] (Anarchie)"
-"Allmacht" "... [conf_aristo] (Aristokratie)"
-"Allmacht" "... [conf_techno] (Technokratie)"
-"Allmacht" "... [conf_theo] (Theokratie)"
+python:
+    conf_calc_comm
+    conf_calc_cap
+    conf_calc_anarch
+    conf_calc_aristo
+    conf_calc_theo
+    conf_calc_techno
+
+"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
+"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
+"Allmacht" "... [conf_calc_anarch] (Anarchie)"
+"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
+"Allmacht" "... [conf_calc_techno] (Technokratie)"
+"Allmacht" "... [conf_calc_theo] (Theokratie)"
 
 if (regime == 'cap') or (regime == 'theo'):
     jump taxipickup
