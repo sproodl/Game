@@ -21,6 +21,8 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
   Bonus im Kalifat und der Aristokratie, Malus in der Technokratie 
 * handicapped = True
   Malus im Kapitalismus
+  immer, wenn man 5 Minuspunkte auf einmal für das derzeitige Regime gesammelt, fühlt man sich unwohl und muss seine Medikamente nehmen
+  hierzu: Funktion statt Label erstellen mit diversen Wehwehchen (z.Z. hust(), migrane(), poop())
 * techfreak = True
   startet mit Bonus in Technokratie
   Malus in Aristokratie
@@ -37,8 +39,8 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
   es gibt Zählvariablen für Komplimente an Männer und Frauen. Wenn an beide Geschlechter komplimentiert wurde,
   wird eine Wahrscheinlichkeit (prob) errechnet. Sonst nur male oder female (count_comp_m und count_comp_f)
   bei Bisexualität: Bonus in Anarchie, Malus in Kalifat
-* count_comp_m = 
-* count_comp_f =
+* attracted2male = 
+* attracted2female =
 * TODO SUCCESS
   * money
     Geld.++ im Kap, + in Aristo, - in Komm
@@ -58,3 +60,8 @@ To do: Boni und Mali für Interaktion aus Regime und Charakter überlegen
     je nach Regime fließen die Kriterien unterschiedlich stark ein (*0, *0.5, *0.75?)
     es geht von Minus bis plus?
     Wie Bereich definieren?? (siehe Plotpunkt "Verratsoption")
+* lethargic = 0
+  Für jede ausweichende Antwort oder Nicht-Entscheidung erhält man einen Punkt. 
+  Nach X Punkten gerät man in eine dreitägige Schleife, in der alles gleich abläuft. 
+  Der dritte Tag endet mit dem Selbstmord des Protagonisten inkl. alles erklärendem
+  Abschiedsbrief a la "alles ist gleich, sinnlos, ich bin ein einflussloser Wurm."

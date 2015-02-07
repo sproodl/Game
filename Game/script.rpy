@@ -84,6 +84,14 @@ python:
     def conf_calc_techno():
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
+    lethargic = 0
+    foreign = False
+    convict = False
+    soldier = False
+    attracted2male = 0
+    attracted2female = 0
+
+
 
 scene bg table_empty
 
@@ -222,13 +230,18 @@ menu:
                 $ conf_techno += 7
             "Wahrscheinlich ist es kaputt. Ich lasse es liegen.":
                 pass
-    "Top, mehr brauche ich nicht.":           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
+    "Ich nehme lieber nichts davon. Vielleicht handele ich mir mit irgendwas davon Ärger ein." if len(items) == 0:
+        $ lethargic += 1
+        jump gender
+    "Top, mehr brauche ich nicht." if 1 <= len(items) <= 6:           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
         $ number_of_items = len(items)
-        if number_of_items >= 1:
+        if number_of_items <= 1:
             $ asocial = True
             $ conf_comm -= 5
             $ conf_anarch += 3
-            jump gender 
+        jump gender
+    "Oh, nix mehr da. Hm... Ich bin ja kein Messie, aber wer weiß, ob nicht jedes dieser Dinge mal nützlich werden könnte! Ich nehme sie ALLE." if len(items) == 7:
+        jump gender
 
 jump backpacking                                        #sorgt dafür, dass nach der Auswahl eines Items wieder mit dem
                                                         #Packen begonnen wird
@@ -248,6 +261,7 @@ python:
 "Allmacht" "... [conf_temp_aristo] (Aristokratie)"
 "Allmacht" "... [conf_temp_techno] (Technokratie)"
 "Allmacht" "... [conf_temp_theo] (Theokratie)"
+"Allmacht" "... [lethargic] (Lethargiepunkte)"
 
 scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."
@@ -295,6 +309,7 @@ python:
 "Allmacht" "... [conf_temp_aristo] (Aristokratie)"
 "Allmacht" "... [conf_temp_techno] (Technokratie)"
 "Allmacht" "... [conf_temp_theo] (Theokratie)"
+"Allmacht" "... [lethargic] (Lethargiepunkte)"
 
 if (regime == 'cap') or (regime == 'theo'):
     jump taxipickup
@@ -321,6 +336,7 @@ python:
         blunt += 2
         flirty -= 1
         buddy -= 1
+        lethargic += 1
 a "Auf den Namen [player_alias]."
 
 t1 "..."
@@ -362,6 +378,7 @@ t2 "Wo warst du denn?"
 
 menu:
     "Genau genommen bin ich gar nicht von hier.":
+        $ foreign = True
         if traditional:
             t2 "Sag bloß..."
         menu:
@@ -370,15 +387,18 @@ menu:
             "Ich bin vor einem halben Jahr von drüben gekommen. Gestern wurde mein Asylantrag bewilligt.":
                 t2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
     "Ach, ich war hier und da.":
+        $ convict = True
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
+        $ convict = True
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
     "Ich habe einige Jahre gedient.":
+        $ soldier = True
         t2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
         "{i}Der Taxifahrer salutiert und blickt ernst in seinen Rückspiegel.{/i}"
         "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
@@ -408,6 +428,7 @@ python:
         blunt += 2
         flirty -= 1
         buddy -= 1
+        lethargic += 1
         player_alias = "SpielerX"
         
 a "Auf den Namen [player_alias]."
@@ -452,7 +473,7 @@ menu:
         menu:
             "Äh, ja, so in etwa.":
                 pass
-            "Wow, was du alles weißt! Und deine Meschenkenntnis. Ich war echt weg...":
+            "Wow, was du alles weißt! Und deine Meschenkenntnis... Ich war übrigens echt weg...":
                 pass
                 $ buddy += 3
 
@@ -460,6 +481,7 @@ h2 "Wo warst du denn?"
 
 menu:
     "Genau genommen bin ich gar nicht von hier.":
+        $ foreign = True
         if traditional:
             h2 "Sag bloß..."
         menu:
@@ -468,15 +490,18 @@ menu:
             "Ich bin vor einem halben Jahr von drüben gekommen. Gestern wurde mein Asylantrag bewilligt.":
                 h2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
     "Ach, ich war hier und da.":
+        $ convict = True
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
+        $ convict = True
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
         h2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
     "Ich habe einige Jahre gedient.":
+        $ soldier = True
         h2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
         "{i}Die Pilotin salutiert und blickt ernst in ihren Rückspiegel.{/i}"
         "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
@@ -530,6 +555,7 @@ python:
         blunt += 2
         flirty -= 1
         buddy -= 1
+        lethargic += 1
 a "Ich heiße [player_alias]."
 dp2 "Hihi, das klingt lustig."
 if traditional:
