@@ -6,19 +6,19 @@ label house_marjam:
 scene bg mh_marjamshouse
 
 python:
-    conf_calc_comm
-    conf_calc_cap
-    conf_calc_anarch
-    conf_calc_aristo
-    conf_calc_theo
-    conf_calc_techno
+    conf_temp_comm = conf_calc_comm()
+    conf_temp_cap = conf_calc_cap()
+    conf_temp_anarch = conf_calc_anarch()
+    conf_temp_aristo = conf_calc_aristo()
+    conf_temp_theo = conf_calc_theo()
+    conf_temp_techno = conf_calc_techno()
 
-"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
-"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
-"Allmacht" "... [conf_calc_anarch] (Anarchie)"
-"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
-"Allmacht" "... [conf_calc_techno] (Technokratie)"
-"Allmacht" "... [conf_calc_theo] (Theokratie)"
+"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
+"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
+"Allmacht" "... [conf_temp_anarch] (Anarchie)"
+"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
+"Allmacht" "... [conf_temp_techno] (Technokratie)"
+"Allmacht" "... [conf_temp_theo] (Theokratie)"
 
 "Wow. Schönes Haus. Wirkt sehr einladend und gemütlich durch diese Beleuchtung. Bin mal gespannt, was diese Marjam für eine ist."
 
@@ -77,19 +77,19 @@ menu:
 m "Ich bringe dich jetzt zu deinem Zimmer"
 
 python:
-    conf_calc_comm
-    conf_calc_cap
-    conf_calc_anarch
-    conf_calc_aristo
-    conf_calc_theo
-    conf_calc_techno
+    conf_temp_comm = conf_calc_comm()
+    conf_temp_cap = conf_calc_cap()
+    conf_temp_anarch = conf_calc_anarch()
+    conf_temp_aristo = conf_calc_aristo()
+    conf_temp_theo = conf_calc_theo()
+    conf_temp_techno = conf_calc_techno()
 
-"Allmacht" "Dein Punktestand beträgt [conf_calc_comm] (Kommunismus)"
-"Allmacht" "... [conf_calc_cap] (Kapitalismus)"
-"Allmacht" "... [conf_calc_anarch] (Anarchie)"
-"Allmacht" "... [conf_calc_aristo] (Aristokratie)"
-"Allmacht" "... [conf_calc_techno] (Technokratie)"
-"Allmacht" "... [conf_calc_theo] (Theokratie)"
+"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
+"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
+"Allmacht" "... [conf_temp_anarch] (Anarchie)"
+"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
+"Allmacht" "... [conf_temp_techno] (Technokratie)"
+"Allmacht" "... [conf_temp_theo] (Theokratie)"
 
 "ENDE"
 
