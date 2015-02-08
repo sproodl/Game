@@ -5,21 +5,7 @@ label house_marjam:
 
 scene bg mh_marjamshouse
 
-python:
-    conf_temp_comm = conf_calc_comm()
-    conf_temp_cap = conf_calc_cap()
-    conf_temp_anarch = conf_calc_anarch()
-    conf_temp_aristo = conf_calc_aristo()
-    conf_temp_theo = conf_calc_theo()
-    conf_temp_techno = conf_calc_techno()
-
-"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
-"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
-"Allmacht" "... [conf_temp_anarch] (Anarchie)"
-"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
-"Allmacht" "... [conf_temp_techno] (Technokratie)"
-"Allmacht" "... [conf_temp_theo] (Theokratie)"
-"Allmacht" "... [lethargic] (Lethargiepunkte)"
+$ print_all_success('Nach dem Pickup.')
 
 "Wow. Schönes Haus. Wirkt sehr einladend und gemütlich durch diese Beleuchtung. Bin mal gespannt, was diese Marjam für eine ist."
 
@@ -81,22 +67,6 @@ menu:
 
 m "Ich bringe dich jetzt zu deinem Zimmer."
 
-python:
-    conf_temp_comm = conf_calc_comm()
-    conf_temp_cap = conf_calc_cap()
-    conf_temp_anarch = conf_calc_anarch()
-    conf_temp_aristo = conf_calc_aristo()
-    conf_temp_theo = conf_calc_theo()
-    conf_temp_techno = conf_calc_techno()
-
-"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
-"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
-"Allmacht" "... [conf_temp_anarch] (Anarchie)"
-"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
-"Allmacht" "... [conf_temp_techno] (Technokratie)"
-"Allmacht" "... [conf_temp_theo] (Theokratie)"
-"Allmacht" "... [lethargic] (Lethargiepunkte)"
-
 scene bg mh_room1
 
 "..."
@@ -104,7 +74,7 @@ scene bg mh_room1
 
 scene bg mh_base
 
-m "Da sind wir. Um 18:30 Uhr kannst du dir dein Abendessen holen. Bitt benutze die Botengänge, nicht die für den Publikumsverkehr."
+m "Da sind wir. Um 18:30 Uhr kannst du dir dein Abendessen holen. Bitte benutze die Botengänge, nicht die für den Publikumsverkehr."
 menu:
     "Das versteht sich von selbst. Diesem unmoralischen Freiervolk will ich nicht begegnen.":
         $ pious_trad += 3
@@ -115,16 +85,18 @@ menu:
         jump gone
     "Auch nicht, wenn ich mich unauffällig verhalte? Würde mich schwer interessieren, wie dieses Freiervolk aussieht und was es so erzählt...":
         $ inquisitive += 3
-        if conf_temp_aristo <=0:
+        if (regime == "aristo") and (conf_calc_aristo() <=0):
             m "Nagut. Aber bitte wirklich unauffällig."
-        if conf_temp_anarch >=1:
+        elif (regime == "anarch") and (conf_calc_anarch() >=1):
             m "Nagut. Aber nerv niemanden."
-        if conf_temp_cap <=0:    
+        elif (regime == "cap") and (conf_calc_cap() <=0):    
             m "Nagut. Aber bitte wirklich unauffällig."
-        if regime == 'comm' OR regime == 'techno':
+        elif (regime == "comm") or (regime == "techno"):
             m "Nagut. Aber bitte wirklich unauffällig."
-        if conf_temp_theo <=0:
+        elif (regime == "theo") and (conf_calc_theo() <=0):
             m "Nagut. Aber bitte wirklich unauffällig."
+        else:
+            m "Definitiv nicht."
         jump gone
     "Auch nicht, wenn ich zahlender Kunde bin?":
         $ capitalist = True
@@ -153,11 +125,11 @@ label whore:
 $ flirty += 4
 $ attracted2female += 1
 "Marjam nimmt mich in Augenschein, als sähe sie mich zum erstem Mal."
-if traditional = False:
+if traditional == False:
     m "Bei der derzeitigen Flaute wäre es leider verantwortungslos, dich einzustellen. Ich könnte dich nicht bezahlen."
-if traditional = True:
+if traditional == True:
     m "Definitiv nicht."
-    if gender = 'undefined':
+    if gender == 'undefined':
         m "Obwohl mir so ein Exot wie du gut ins Kozept passen würde..."
         "Marjam seufzt."
 
@@ -168,16 +140,40 @@ $ renpy.pause(1.0)
 
 "Ich bin ganz schön müde. Sollte mich hinlegen und Mittagsschlaf machen."  ######### HIER GÄHNSOUND EINFÜGEN#####
 
+$ print_all_success('Nach dem ersten Gespräch mit Marjam.')
+
 scene black
 $ renpy.pause(3.0)
 
 "gähhn."
 "Oh, wie lange habe ich geschlafen?"
+
+scene white
 "Ah, perfekt, kurz vor sechs. Ich könnte ein bisschen fernsehen, bevor ich zum Abendessen gehe. In ein paar Minuten laufen Nachrichten."
 
 scene bg tv
 
-"..."
+"Es folgen das Regime erklärende Szenen und ein kurzes Erstaunen, was hier los ist."
+
+if asocial == True:
+    "Ich denke, es ist eine gute Idee, diese neuen Eindrücke in das Tagebuch zu schreiben, das ich Freddy abgezogen habe."
+else:
+    "Ich denke, es ist eine gute Idee, das Abschiedsgeschenk, das ich von meinen Freunden bekommen habe, jetzt zu benutzen."
+
+$ items.add('diary')  ## Titel mit Tag, Datum, Uhrzeit, geschrieben in ein neues Dokument. Später Funktion, die neuen Text an hier geschaffenes
+python:                ## Dokument anhängt und dieses öffnet, sodass man es auch lesen kann.
+    import os, time
+    ndir = os.getcwd() + '/' + player_alias
+    os.mkdir(ndir, 0777)
+    with open(os.path.join(os.getcwd(), player_alias, player_alias) + '_diary', 'a+') as diary:
+        diary.write("Tagebuch von %s" %player_alias)
+        diary.write(time.strftime("%A, %x %X -- ") + renpy.input("Liebes Tagebuch, "))
+    print("Das steht im Tagebuch: %s " %diary)
+
+$ print_all_success('Nach dem ersten Tagebucheintrag.')
+
+"Jut."
+
         
     
 

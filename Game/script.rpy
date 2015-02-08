@@ -34,7 +34,7 @@ define t1 = Character("Taxifahrerin")
 define t2 = Character("Taxifahrer")
 define h1 = Character("Hovercraftpilot")
 define h2 = Character("Hovercraftpilotin")
-define sp = Character("Stephan") #muss eventuell nochmal aufgesplittet werden für Anarch und Aristo
+define sp = Character("Stephan")
 define dp1 = Character("Evelin")
 define dp2 = Character("Lischen")
 define m = Character ("Marjam")
@@ -85,7 +85,14 @@ python:
     def conf_calc_techno():
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
-    def print_all_success():
+    conf_temp_aristo = conf_calc_aristo()
+    conf_temp_anarch = conf_calc_anarch()
+    conf_temp_cap = conf_calc_cap()
+    conf_temp_comm = conf_calc_comm()
+    conf_temp_theo = conf_calc_theo()
+    conf_temp_techno = conf_calc_techno()
+    def print_all_success(scene):
+        print("Punkt im Spiel: " + scene)
         print("Techno: " + str(conf_calc_techno()))
         print("Theo: " + str(conf_calc_theo()))
         print("Aristo: " + str(conf_calc_aristo()))
@@ -102,6 +109,7 @@ python:
     soldier = False
     attracted2male = 0
     attracted2female = 0
+    diary = 'empty'
 
 
 
@@ -139,6 +147,7 @@ menu:
         $ regime = "theo"
         jump generate_regime_name
 
+$ print("Regime: %s" %regime)
 
 #Wie kann ich Unicode statt ascii ausgeben? 
 label generate_regime_name:
@@ -244,6 +253,7 @@ menu:
                 pass
     "Ich nehme lieber nichts davon. Vielleicht handele ich mir mit irgendwas davon Ärger ein." if len(items) == 0:
         $ lethargic += 1
+        $ conf_comm -= 5
         jump gender
     "Top, mehr brauche ich nicht." if 1 <= len(items) <= 6:           ### Hier für den Fall, dass jemand alles nimmt, eine Abfrage einbauen
         $ number_of_items = len(items)
@@ -259,7 +269,7 @@ jump backpacking                                        #sorgt dafür, dass nach
                                                         #Packen begonnen wird
 label gender:
 
-$ print_all_success()
+$ print_all_success('Nach dem Rucksackpacken.')
 
 scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."
@@ -293,21 +303,7 @@ if handicapped:
 
 "Na dann mal los."
 
-python:
-    conf_temp_comm = conf_calc_comm()
-    conf_temp_cap = conf_calc_cap()
-    conf_temp_anarch = conf_calc_anarch()
-    conf_temp_aristo = conf_calc_aristo()
-    conf_temp_theo = conf_calc_theo()
-    conf_temp_techno = conf_calc_techno()
-
-"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
-"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
-"Allmacht" "... [conf_temp_anarch] (Anarchie)"
-"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
-"Allmacht" "... [conf_temp_techno] (Technokratie)"
-"Allmacht" "... [conf_temp_theo] (Theokratie)"
-"Allmacht" "... [lethargic] (Lethargiepunkte)"
+$ print_all_success('Nach dem Klogang.')
 
 if (regime == 'cap') or (regime == 'theo'):
     jump taxipickup
