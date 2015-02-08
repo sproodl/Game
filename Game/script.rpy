@@ -19,6 +19,7 @@ image bg mh_room2 = 'Images/screen9b_mh_room.png'
 image bg mh_room3 = 'Images/screen9c_mh_room.png'
 image bg mh_room1 = 'Images/screen9a_mh_hall.png'
 image bg mh_base = 'Images/screen10_mh_base.png'
+image bg tv = 'Images/screen11_tv.png'
 
 image items_tribal = im.FactorScale('Images/Trachtenhut.png', 0.3, 0.3)
 image items_rolex = im.FactorScale('Images/Rolex.png', .3, .3)
@@ -84,6 +85,17 @@ python:
     def conf_calc_techno():
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
+    def print_all_success():
+        print("Techno: " + str(conf_calc_techno()))
+        print("Theo: " + str(conf_calc_theo()))
+        print("Aristo: " + str(conf_calc_aristo()))
+        print("Anarch: " + str(conf_calc_anarch()))
+        print("Comm: " + str(conf_calc_comm()))
+        print("Cap: " + str(conf_calc_cap()))
+        print("Lethargie: " + str(lethargic))
+        print("Mag Männer: " + str(attracted2male))
+        print("Mag Frauen: " + str(attracted2female))
+        print("Rucksackinhalt: " + str(items))
     lethargic = 0
     foreign = False
     convict = False
@@ -247,21 +259,7 @@ jump backpacking                                        #sorgt dafür, dass nach
                                                         #Packen begonnen wird
 label gender:
 
-python:
-    conf_temp_comm = conf_calc_comm()
-    conf_temp_cap = conf_calc_cap()
-    conf_temp_anarch = conf_calc_anarch()
-    conf_temp_aristo = conf_calc_aristo()
-    conf_temp_theo = conf_calc_theo()
-    conf_temp_techno = conf_calc_techno()
-
-"Allmacht" "Dein Punktestand beträgt [conf_temp_comm] (Kommunismus)"
-"Allmacht" "... [conf_temp_cap] (Kapitalismus)"
-"Allmacht" "... [conf_temp_anarch] (Anarchie)"
-"Allmacht" "... [conf_temp_aristo] (Aristokratie)"
-"Allmacht" "... [conf_temp_techno] (Technokratie)"
-"Allmacht" "... [conf_temp_theo] (Theokratie)"
-"Allmacht" "... [lethargic] (Lethargiepunkte)"
+$ print_all_success()
 
 scene bg table_empty
 "Ich sollte auf Klo gehen, bevor ich mich auf den Weg mache."

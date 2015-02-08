@@ -63,6 +63,7 @@ m "Du kannst hier schlafen und essen, bis du eine permanente Bleibe gefunden has
 menu:
     "Was meinst du mit der ''derzeitigen politischen Lage''?":
         m "..."
+        "Aha, scheint ein schwieriges Thema zu sein."
         $ inquisitive += 3
     "Wo ist mein Zimmer?":
         m "Du scheinst mir von der besonders gesprächigen Sorte zu sein, hm?"
@@ -78,7 +79,7 @@ menu:
         $ buddy += 3
         $ pious_trad += 5
 
-m "Ich bringe dich jetzt zu deinem Zimmer"
+m "Ich bringe dich jetzt zu deinem Zimmer."
 
 python:
     conf_temp_comm = conf_calc_comm()
@@ -170,6 +171,13 @@ $ renpy.pause(1.0)
 scene black
 $ renpy.pause(3.0)
 
+"gähhn."
+"Oh, wie lange habe ich geschlafen?"
+"Ah, perfekt, kurz vor sechs. Ich könnte ein bisschen fernsehen, bevor ich zum Abendessen gehe. In ein paar Minuten laufen Nachrichten."
+
+scene bg tv
+
+"..."
         
     
 
