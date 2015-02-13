@@ -19,7 +19,6 @@ m "Die bin ich."
 if regime == "comm":
     m "Du solltest es dir angewöhnen, mich mit ''Genossin'' anzusprechen."
     a "Verzeihung, Genossin!"
-    m "Du brauchst nicht gleich zu salutieren, verstimmtnochmal."
 
 m "Komm rein. Immer den Gang entlang, ich empfange dich im Restaurant."
 
@@ -162,13 +161,13 @@ else:
 
 $ items.add('diary')  ## Titel mit Tag, Datum, Uhrzeit, geschrieben in ein neues Dokument. Später Funktion, die neuen Text an hier geschaffenes
 python:                ## Dokument anhängt und dieses öffnet, sodass man es auch lesen kann.
-    import os, time
+    import os, time, codecs
     ndir = os.getcwd() + '/' + player_alias
     os.mkdir(ndir, 0777)
-    with open(os.path.join(os.getcwd(), player_alias, player_alias) + '_diary', 'a+') as diary:
-        diary.write("Tagebuch von %s" %player_alias)
-        diary.write(time.strftime("%A, %x %X -- ") + renpy.input("Liebes Tagebuch, "))
-    print("Das steht im Tagebuch: %s " %diary)
+    with codecs.open(os.path.join(os.getcwd(), player_alias, player_alias) + '_diary', 'a+', encoding='utf-8') as diary:
+        diary.write(u"Tagebuch von %s" %player_alias)
+        diary.write(time.strftime("%A, %x %X -- ") + renpy.input(u"Liebes Tagebuch, "))
+    print(u"Das steht im Tagebuch: %s " %diary)
 
 $ print_all_success('Nach dem ersten Tagebucheintrag.')
 

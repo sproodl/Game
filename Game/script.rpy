@@ -324,7 +324,7 @@ t1 "Hast du n Taxi bestellt?"
 a "Ja, hab ich!"
 t1 "Und auf welchen Namen?"
 python:
-    player_alias = renpy.input("Und auf welchen Namen?", length = 20)
+    player_alias = unicode(renpy.input("Und auf welchen Namen?", length = 20))
     if not player_alias:
         player_alias = "SpielerX"
         blunt += 2
@@ -417,7 +417,7 @@ h1 "Hast du n Taxi bestellt?"
 a "Ja, hab ich!"
 h1 "Und auf welchen Namen?"
 python:
-    player_alias = renpy.input("Und auf welchen Namen?", length = 20)
+    player_alias = unicode(renpy.input("Und auf welchen Namen?", length = 20))
     if not player_alias:
         blunt += 2
         flirty -= 1
@@ -517,7 +517,7 @@ scene bg sp_outside
 
 sp "Freund, wie lautet dein Name?"
 python:
-    player_alias = renpy.input("Dein Name: ", length = 20)
+    player_alias = unicode(renpy.input("Dein Name: ", length = 20))
     if not player_alias:
         player_alias = "SpielerX"
         blunt += 2
@@ -543,7 +543,7 @@ scene bg dp_outside
 
 dp1 "Genosse, wie heißt du?"
 python:
-    player_alias = renpy.input("Dein Name: ", length = 20)
+    player_alias = unicode(renpy.input("Dein Name: ", length = 20))
     if not player_alias:
         player_alias = "SpielerX"
         blunt += 2
