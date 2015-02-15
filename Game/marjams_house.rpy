@@ -161,7 +161,6 @@ else:
 
 $ items.add('diary')  ## Titel mit Tag, Datum, Uhrzeit, geschrieben in ein neues Dokument. Später Funktion, die neuen Text an hier geschaffenes
 python:                ## Dokument anhängt und dieses öffnet, sodass man es auch lesen kann.
-    import os, time, codecs
     ndir = os.getcwd() + '/' + player_alias
     os.mkdir(ndir, 0777)
     with codecs.open(os.path.join(os.getcwd(), player_alias, player_alias) + '_diary', 'a+', encoding='utf-8') as diary:

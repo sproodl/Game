@@ -39,7 +39,9 @@ define dp1 = Character("Evelin")
 define dp2 = Character("Lischen")
 define m = Character ("Marjam")
 
-#NEED TO LOOK INTO INIT BLOCKS FOR CHARACTERS AS SOON AS I GET STARTED WITH SPRITES?
+#INITIALISING PYTHONSTUFF#
+init python:
+    import random, codecs, time, os
 
 #STARTING THE GAME#
 label start:
@@ -148,16 +150,14 @@ menu:
         jump generate_regime_name
 
 $ print("Regime: %s" %regime)
-
-#Wie kann ich Unicode statt ascii ausgeben? 
+ 
 label generate_regime_name:
 python:
-    import random
-    with open("specs/regime_specs/regime_%s_title" % regime) as temp:
+    with codecs.open("specs/regime_specs/regime_%s_title" % regime, encoding='utf-8') as temp:
         regime_title_list = temp.read().strip().split("\n")
         regime_gender, regime_title = random.sample(regime_title_list, 1)[0].split("\t")
 
-    with open("specs/regime_specs/regime_%s_traits" % regime) as temp:
+    with codecs.open("specs/regime_specs/regime_%s_traits" % regime, encoding='utf-8') as temp:
         regime_trait_list = temp.read().strip().split("\n")
         regime_traits = random.sample(regime_trait_list, 2)
 
