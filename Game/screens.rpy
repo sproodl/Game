@@ -96,9 +96,13 @@ init -2:
     style menu_choice is button_text:
         clear
 
-    style menu_choice_button is button:
-        xminimum int(config.screen_width * 0.75)
-        xmaximum int(config.screen_width * 0.75)
+    style menu_choice_button:
+       xminimum int(config.screen_width * 0.5)
+       xmaximum int(config.screen_width * 0.5)
+    $ style.menu_choice_button.background = Frame("Images/Styles/window_say_general.png", 25, 25)
+    $ style.menu_choice_button.hover_background = Frame("Images/Styles/window_say_general_hover.png", 25, 25)
+    $ style.menu_choice_button.left_padding = 15
+    $ style.menu_choice_button.right_padding = 15
 
 
 ##############################################################################

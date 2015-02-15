@@ -96,28 +96,28 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    # style.window.background = Frame("frame.png", 12, 12)
+    style.window.background = Frame("Images/Styles/window_say_general.png", 30, 30)
 
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
 
-    # style.window.left_margin = 6
-    # style.window.right_margin = 6
+    style.window.left_margin = 60
+    style.window.right_margin = 60
     # style.window.top_margin = 6
-    # style.window.bottom_margin = 6
+    style.window.bottom_margin = 15
 
     ## Padding is space inside the window, where the background is
     ## drawn.
 
-    # style.window.left_padding = 6
-    # style.window.right_padding = 6
-    # style.window.top_padding = 6
-    # style.window.bottom_padding = 6
+    style.window.left_padding = 10
+    style.window.right_padding = 10
+    style.window.top_padding = 10
+    style.window.bottom_padding = 10
 
     ## This is the minimum height of the window, including the margins
     ## and padding.
 
-    # style.window.yminimum = 250
+    style.window.yminimum = 50
 
 
     #########################################
@@ -150,6 +150,10 @@ init -1 python hide:
     ## The default size of text.
 
     # style.default.size = 22
+    style.default.drop_shadow = [(1, 1)] # adds a shadow of 1 px down and to the right
+    # makes a 2px black outline
+    style.default.outlines = [(2, "#000000", 0, 0)]
+    style.default.layout = "subtitle"
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
