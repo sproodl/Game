@@ -144,8 +144,8 @@ $ print_all_success('Nach dem ersten Gespräch mit Marjam.')
 scene black
 $ renpy.pause(3.0)
 
-"gähhn."
-"Oh, wie lange habe ich geschlafen?"
+centered "gähhn."
+centered "Oh, wie lange habe ich geschlafen?"
 
 scene white
 "Ah, perfekt, kurz vor sechs. Ich könnte ein bisschen fernsehen, bevor ich zum Abendessen gehe. In ein paar Minuten laufen Nachrichten."
