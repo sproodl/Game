@@ -1,4 +1,4 @@
-﻿#-*- mode:python -*
+﻿# -*- mode:python -*-
 ## This file contains some of the options that can be changed to customize
 ## your Ren'Py game. It only contains the most common options... there
 ## is quite a bit more customization you can do.
@@ -135,9 +135,9 @@ init -1 python hide:
     ## the number is interpreted as a fraction of the size of the
     ## displayable or screen.
 
-    # style.mm_menu_frame.xpos = 0.5
+    style.mm_menu_frame.xpos = 0.5
     # style.mm_menu_frame.xanchor = 0.5
-    # style.mm_menu_frame.ypos = 0.75
+    style.mm_menu_frame.ypos = 0.75
     # style.mm_menu_frame.yanchor = 0.5
 
 
