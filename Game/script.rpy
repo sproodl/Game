@@ -117,8 +117,8 @@ python:
 
 scene bg table_empty
 
-"In welchem Regime werde ich leben?"
 menu:
+    "In welchem Regime werde ich leben?"
     "In einer Aristokratie.":
         "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
         $ regime = "aristo"
@@ -190,8 +190,8 @@ show items_condoms at Position(xpos= .6, xanchor= .5, ypos= .6, yanchor= .5)
 label backpacking:
 
 $ save_name = "Ich sollte meine Tasche packen."         ##SPÄTER ÜBERALL SAVENAMES ANGEBEN######################################
-"Was nehme ich mit?"
 menu:
+    "Was nehme ich mit?"
     "Kondome." if 'condoms' not in items:               #Option wird nur angezeigt, wenn 'condoms' noch nicht in 'items'
         $ gigolo = True                                 #bei Auswahl von 'condoms' wird der Spieler zum Gigolo
         $ items.add('condoms')                          #und 'condoms' wird hinzugefügt zu 'items'

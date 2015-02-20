@@ -206,10 +206,17 @@ screen main_menu:
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
+    style main_menu_button:
+        background "Images/Styles/window_say_general.png"
+        xpadding 5
 
-    # Make all the main menu buttons be the same size.
-    style mm_button:
-        size_group "mm"
+    style main_menu_button_text:
+        size 18
+        idle_color "#8888"
+        hover_color "#ccc"
+        selected_idle_color "#cc08"
+        selected_hover_color "#cc0"
+        insensitive_color "#4448"
 
 
 
