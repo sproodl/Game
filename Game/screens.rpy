@@ -1,4 +1,4 @@
-﻿#-*- mode:python -*
+﻿#-*- mode:python -*-
 # This file is in the public domain. Feel free to modify it as a basis
 # for your own screens.
 
@@ -193,8 +193,9 @@ screen main_menu:
     # The main menu buttons.
     frame:
         style_group "mm"
-        xalign .98
-        yalign .98
+        xalign .5
+        yalign .5
+        
 
         has vbox
 
@@ -536,11 +537,12 @@ init -2:
 screen quick_menu:
 
     # Add an in-game quick menu.
-    hbox:
+    vbox:
         style_group "quick"
 
         xalign 1.0
-        yalign 1.0
+        yalign 0
+        spacing 25
 
         textbutton _("Back") action Rollback()
         textbutton _("Save") action ShowMenu('save')
@@ -554,12 +556,12 @@ screen quick_menu:
 init -2:
     style quick_button:
         is default
-        background None
+        background "Images/Styles/window_say_general.png"
         xpadding 5
 
     style quick_button_text:
         is default
-        size 12
+        size 14
         idle_color "#8888"
         hover_color "#ccc"
         selected_idle_color "#cc08"
