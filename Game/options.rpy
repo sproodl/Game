@@ -1,4 +1,5 @@
-﻿## This file contains some of the options that can be changed to customize
+﻿#-*- mode:python -*
+## This file contains some of the options that can be changed to customize
 ## your Ren'Py game. It only contains the most common options... there
 ## is quite a bit more customization you can do.
 ##
@@ -95,7 +96,7 @@ init -1 python hide:
     ## The background of the window. In a Frame, the two numbers
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
-
+    
     style.window.background = Frame("Images/Styles/window_say_general.png", 30, 30)
 
     ## Margin is space surrounding the window, where the background

@@ -1,4 +1,5 @@
-﻿# This file is in the public domain. Feel free to modify it as a basis
+﻿#-*- mode:python -*
+# This file is in the public domain. Feel free to modify it as a basis
 # for your own screens.
 
 ##############################################################################
@@ -114,6 +115,8 @@ init -2:
 screen input:
 
     window style "input_window":
+        xalign 0.5
+        yalign 0.5
         has vbox
 
         text prompt style "input_prompt"
