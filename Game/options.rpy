@@ -291,3 +291,5 @@ init -1 python hide:
 
     #########################################
     ## More customizations can go here.
+
+# mm_button.frame is "Images/Styles/window_say_general.png" ## gescheiterter Versuch, die Buttons im Main_Menu anzupassen, indem ich den parent style aller buttons anpasse. Vielleicht falsche Datei oder falsche Stelle?

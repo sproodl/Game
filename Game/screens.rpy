@@ -181,6 +181,8 @@ screen nvl:
 # Screen that's used to display the main menu, when Ren'Py first starts
 # http://www.renpy.org/doc/html/screen_special.html#main-menu
 
+$ style.mm.frame = "Images/Styles/window_say_general.png"
+
 screen main_menu:
 
     # This ensures that any other menu screen is replaced.

@@ -106,7 +106,7 @@ menu:
             a "Ich kann die hier anbieten..."
             "Marjam betrachtet die Uhr aufmerksam, bewegt sie im durch das kleine Fenster hereinfallenden Licht hin und her."
             m "Für dieses Imitat kannst du mit dem Rezeptionisten 10 Minuten ''Vier gewinnt'' spielen, mehr nicht."
-            "Mist, enttarnt."
+            "Mist. Die Frau hat Geschäftssinn."
             jump gone
         if 'rolex' not in items:
             a "Noch habe ich nichts. Aber ich werde mir einen Job suchen."
@@ -152,7 +152,47 @@ scene white
 
 scene bg tv
 
-"Es folgen das Regime erklärende Szenen und ein kurzes Erstaunen, was hier los ist."
+if regime == 'aristo':
+    jump tv_aristo
+elif regime == 'anarch':
+    jump tv_anarch
+elif regime == 'comm':
+    jump tv_comm
+elif regime == 'cap':
+    jump tv_cap
+elif regime == 'theo':
+    jump tv_theo
+else:
+    jump tv_techno
+
+label tv_aristo:
+
+jump diary_first_entry
+
+label tv_anarch:
+
+jump diary_first_entry
+
+label tv_cap:
+
+jump diary_first_entry
+
+label tv_comm:
+
+jump diary_first_entry
+
+label tv_techno:
+
+jump diary_first_entry
+
+label tv_theo:
+
+jump diary_first_entry
+
+"..." 
+$ renpy.pause(1.0)
+
+"Krass."
 
 if asocial == True:
     "Ich denke, es ist eine gute Idee, diese neuen Eindrücke in das Tagebuch zu schreiben, das ich Freddy abgezogen habe."
