@@ -150,7 +150,7 @@ centered "Oh, wie lange habe ich geschlafen?"
 scene white
 "Ah, perfekt, kurz vor sechs. Ich könnte ein bisschen fernsehen, bevor ich zum Abendessen gehe. In ein paar Minuten laufen Nachrichten."
 
-scene bg tv
+scene bg tv ## Vielleicht erst ein Werbeclip, dann Nachrichten inklusive der Ankündigung von Feiern eines Staatstages
 
 if regime == 'aristo':
     jump tv_aristo

@@ -344,6 +344,9 @@ scene bg taxi_gone
 "..."
 " Na toll. Was für ein Neustart."
 
+if 'gigolo' == True:
+    "Dabei sah sie ganz süß aus."
+
 "Ah, da kommt noch eins."
 
 scene bg my_taxi
@@ -380,12 +383,20 @@ menu:
                 t2 "Gratuliere."
             "Ich bin vor einem halben Jahr von drüben gekommen. Gestern wurde mein Asylantrag bewilligt.":
                 t2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
+            "Findest du mich exotisch? Manche finden sowas ja sehr interessant...;)":
+                $ attracted2male += 1
+                $ flirty += 2
+                t2 "Oh, also, so genau habe ich jetzt gar nicht geguckt..."
     "Ach, ich war hier und da.":
         $ convict = True
+        $ conf_anarch += 1
+        $ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
+        $ conf_anarch += 1
+        $ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
@@ -398,6 +409,7 @@ menu:
         "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
         $ pious_trad += 2
 
+$ print_all_success('Nach dem Taxipickup.')
 "Der Fahrer stellt das Radio an."
 
 #HIER RADIOSOUNDS REINTUN#
@@ -485,10 +497,14 @@ menu:
                 h2 "Drüben? Da möchte ich nicht mit dir tauschen. Na dann viel Glück hier."
     "Ach, ich war hier und da.":
         $ convict = True
+        $ conf_anarch += 1
+        $ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
+        $ conf_anarch += 1
+        $ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
         h2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
         a "... (Ich hülle mich in Schweigen)..."
@@ -526,36 +542,207 @@ python:
 a "Ich heiße [player_alias]."
 
 if regime == 'aristo':
-    sp "Ach, wunderbar. Mir wurde aufgetragen, dich abzuholen."
-if regime == 'anarch':
-    sp "Sehr gut. Miriam hat mich gebeten, dich abzuholen." 
+    jump singlepickup_aristo
+else:
+    jump singlepickup_anarch
 
-"Hündchen" "Wuff."
-if traditional:
-    "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
+label singlepickup_aristo:
+    sp "Ach, wunderbar. Mir wurde aufgetragen, dich abzuholen."
+    menu:
+        "Das ist aber freundlich.":
+            $ buddy += 2
+            $ inquisitive -= 1
+            "Er schaut verwundert."
+            sp "Es ist meine Pflicht."
+        "Von wem wurdest du beauftragt?":
+            $ inquisitive += 3
+            sp "Vom stellvertretenden obersten Beamten dieser Grafschaft."
+        "Werden für diese Aufgabe die charismatischsten Leute ausgesucht;)?":
+            $ attracted2male += 1
+            $ flirty += 1
+            $ inquisitive -= 1
+            sp "Nun, nein, das machen alle Haushaltsvorsteher abwechselnd."
+            "Soso, Haushaltsvorsteher..."
+        "Wo bringst du mich hin?":
+            $ inquisitive += 1
+            $ buddy -= 1
+            sp "Zu Marjams Haus. Da wirst du erstmal untergebracht."
+    sp "Ich weiß kaum mehr über dich als deinen Namen und dass du hier neu bist."
+    "Das ist jetzt wohl eine Aufforderung zum Quatschen."
+    menu:
+        "Ach, da gibt es nicht viel zu erzählen.":
+            sp "..."
+            sp "Verstehe."
+            "Er schaut auf meine abgewetzten Sneakers, auf denen unmissverständlich meine Identifikationsnummer und das Logo des Gefängnisses stehen. Memo an mich selbst: Bei der erstbesten Gelegenheit andere Schuhe besorgen."
+            $ buddy -= 2
+            $ lethargic += 1
+            $ convict = True
+            $ conf_anarch += 1
+            $ conf_aristo -= 1
+        "Verzeihung, ist das eine Aufforderung, mich vorzustellen? Ich kenne mich noch nicht gut aus hier.":
+            $ foreign = True
+            sp "Kommst du nicht von hier?"
+            "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
+            sp "Von so weit her kommst du? Ich bin nie weiter als bis zur nächsten Zollstelle gekommen."
+        "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien, der Herr. Zuletzt Oberfeldwebel.":
+            $ soldier = True
+            sp "Ah, auch im ehrbaren Dienste der Obrigkeit."
+            $ conf_aristo += 1
+            sp "Freut mich, dich kennen zu lernen."
+
+
+jump singlepickup_bye
+
+label singlepickup_anarch:
+    sp "Sehr gut. Miriam hat mich gebeten, dich abzuholen."
+    menu:
+        "Das ist aber freundlich.":
+            $ buddy += 2
+            $ inquisitive -= 1
+            sp "Ist doch klar. Eine Hand wäscht die andere. Mit nem guten Start in unsere Gemeinschaft findest du bald deinen Platz. Da helf ich gern."
+        "Von wem wurdest du beauftragt?":
+            $ inquisitive += 3
+            sp "Marjam Touftou ist ihr voller Name. Aber den benutzen wir selten. Weiß auch so jeder hier, wer gemeint ist."
+        "Werden für diese Aufgabe die charismatischten Leute ausgesucht;)?":
+            $ attracted2male += 1
+            $ flirty += 1
+            $ inquisitive -= 1
+            sp "Haha, du...!."
+            "Er guckt etwas verunsichert."
+        "Wo bringst du mich hin?":
+            $ inquisitive += 1
+            $ buddy -= 1
+            sp "Zu Marjams Haus. Es liegt am östlichen Rand des Orts. Sie wird dir dann helfen, dich zu orientieren."
+            sp "Ich kann das leider nicht übernehmen, weil ich gleich zurück in den Laden muss."
+    sp "..."
+    sp "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend einen Meierer und einen Schuster."
+    "Oh, ist ja wie ein Bewerbungsgespräch hier."
+    menu:
+        "Ach, ich kann von allem ein bisschen, weißt du...":
+            sp "..."
+            sp "Verstehe."
+            "Er betrachtet mich nachdenklich. Vielleicht auch eine Spur abschätzig? Dann schaut er weg."
+            $ buddy -= 4
+            $ lethargic += 1
+        "Ich habe weder von Käse noch von Schuhen Ahnung, aber ich habe im Knast weben und stricken gelernt. Vielleicht bringt das ja was.":
+            $ convict = True
+            $ conf_anarch += 1
+            $ conf_aristo -= 1
+            sp "In der Weberei können sie tatsächlich immer Leute gebrauchen."
+        "Mit Produktion kenne ich mich nicht aus. Eher mit Kochen. Ich weiß aber nicht, ob ihr die Gewürze habt, mit denen ich sonst koche.":
+            $ foreign = True
+            sp "Kommst du nicht von hier?"
+            "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
+            sp "Von so weit her kommst du? Interessant! Ich fürchte nur, dass unser Bezirk keine Handlungsbeziehungen mit drüben pflegt."
+            sp "Sieht gewürzetechnisch also düster aus."
+        "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien haben mir kaum Zeit gelassen, etwas Lebensnahes zu lernen.":
+            $ soldier = True
+            sp "Ah, ein Berufsmörder. Was Lebensbejahenderes würde mir in dem Fall schon reichen..."
+            $ conf_aristo += 1
+            $ conf_anarch -= 4
+            sp "Nagut, dich kriegen wir schon auch noch sozialisiert."
+            "Der scheint genauso ein Militärfan wie ich zu sein... Hat schon gute Gründe, warum ich den Verein verlassen hab."
+
+jump singlepickup_bye
+
+label singlepickup_bye:
+    "Hündchen" "Wuff."
+    if traditional:
+        "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
+
+    sp "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
 
 jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
 
 label doublepickup:
 
-scene bg dp_outside
+    scene bg dp_outside
 
-dp1 "Genosse, wie heißt du?"
-python:
-    player_alias = unicode(renpy.input("Dein Name: ", length = 20))
-    if not player_alias:
-        player_alias = "SpielerX"
-        blunt += 2
-        flirty -= 1
-        buddy -= 1
-        lethargic += 1
-a "Ich heiße [player_alias]."
-dp2 "Hihi, das klingt lustig."
-if traditional:
-    dp2 "Du bist wohl nich von hier."
+    dp1 "Genosse, wie heißt du?"
+    python:
+        player_alias = unicode(renpy.input("Dein Name: ", length = 20))
+        if not player_alias:
+            player_alias = "SpielerX"
+            blunt += 2
+            flirty -= 1
+            buddy -= 1
+            lethargic += 1
+    a "Ich heiße [player_alias]."
+    dp2 "Hihi, das klingt lustig."
+    if traditional:
+        dp2 "Du bist wohl nich von hier."
 
-dp1 "Wir begleiten dich jetzt zu Marjam."
+    dp1 "Wir begleiten dich jetzt zu Marjam."
+    menu:
+        "Das ist aber freundlich.":
+            $ buddy += 2
+            $ inquisitive -= 1
+            dp1 "Ist doch klar. Mit nem guten Start in unsere Gemeinschaft findest du bald deinen sinnvollen Platz. Da helf ich gern."
+            dp2 "... Genosse! Es heißt Genosse, Mama."
+            dp1 "Ja, gut aufgepasst, sehr höflich von dir... Genösschen."
+            "Man muss also jeden mit Genosse ansprechen? Irgendwie albern. Aber anscheinend scheint die Dame den Humor nicht darüber verloren zu haben."
+        "Von wem wurdest du beauftragt?":
+            $ inquisitive += 3
+            dp1 "Marjam Touftou ist der Name der Geschäftsführerin des VEB FH."
+            dp2 "Mama, wofür steht eigentlich fau-eh-beh-eff-ha?"
+            dp1 "Für volkseigener Betrieb Fr... ach, das lernst du schon noch in der Jugendgruppe."
+            "Hm, jetzt bin ich neugierig. Wofür steht das FH? Fahrradhandel?"
+        "Werden für diese Aufgabe die charismatischsten Leute ausgesucht;)?":
+            $ attracted2female += 1
+            $ flirty += 1
+            $ inquisitive -= 1
+            dp2 "Was ist Sakrisma?"
+            dp1 "Haha, du...!."
+            "Sie bekommt leicht rosige Wangen. Bevor ich ein weiteres Kompliment anbringen kann, nimmt sie den Faden wieder auf."
+        "Wo ist denn diese Marjam?":
+            $ inquisitive += 1
+            $ buddy -= 1
+            dp1 "In ihrem VEB FH am östlichen Rand des Orts. Mirjam wird dir ein Obdach geben und von dort aus helfen, dich zu orientieren."
+    dp1 "..."
+    dp1 "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend Lehrer und Landwirte."
+    "Oh, ist ja wie ein Bewerbungsgespräch hier."
+    menu:
+        "Ach, ich kann von allem ein bisschen, weißt du...":
+            dp1 "Aha."
+            "Sie betrachtet mich, die linke Augenbraue leicht angehoben. War wohl die falsche Antwort."
+            $ buddy -= 4
+            $ lethargic += 1
+            dp2 "Da kann ja sogar ich mehr! Ich kann nämlich aaalle meine Fibellieder!"
+        "Ich habe weder von Kindern noch von Kartoffeln Ahnung, aber ich habe im Knast weben und stricken gelernt. Vielleicht bringt das ja was.":
+            a "Hier, eine Arbeitsprobe!"
+            "Ich mache meinen Reißverschluss auf und präsentiere stolz meinen Pullover."
+            dp2 "Darf ich...?"
+            "Sie deutet auf meine Brust und kommt näher."
+            menu:
+                "Klar, ist ne top Qualität!":
+                    pass
+                "Komm ruhig näher ;)":
+                    $ flirty += 2
+                    $ attracted2female += 1
+                    pass
+            "Sie befühlt meinen handgestrickten Pulli."
+            dp1 "Der ist echt schön."
+            $ convict = True
+            $ conf_anarch += 1
+            $ conf_aristo -= 1
+            dp1 "In der Weberei können sie tatsächlich immer Leute gebrauchen."
+        "Damit kenne ich mich leider nicht so aus. Ich war vorher Wandererzähler, da reist man herum und wird für seine Geschichten bewirtet. Man macht eigentlich nie was... Handfestes.":
+            $ foreign = True
+            dp1 "Klingt, als kämst du nicht von hier."
+            "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
+            dp1 "Spannend."
+            dp2 "Papa sagt, in der Schule erzählen sie auch Märchen, da kannst d-"
+            dp1 "Sowas würde Papa nie sagen, du hast ihn falsch verstanden!"
+            "Ah, klassischer Fall von ''Kindermund tut selten gut''. Treffendes Sprichwort."
+            if simplemind == False:
+                "Neee, warte mal, das hieß irgendwie anders."
+        "5 Jahre dritte Kompanie der Infanterie in den westlichen Kolonien haben mir kaum Zeit gelassen, etwas so Lebensnahes zu lernen.":
+            $ soldier = True
+            dp1 "Ah, ein Pionier der Revolution! Für Leute wie dich finden wir immer was zu tun."
+            $ conf_aristo += 1
+            $ conf_anarch -= 4
+            "Hoffentlich hat die Tätigkeit nix mit meiner bisherigen zu tun..."
 
 jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
