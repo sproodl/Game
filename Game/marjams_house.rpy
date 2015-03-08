@@ -192,7 +192,8 @@ jump diary_first_entry
 "..." 
 $ renpy.pause(1.0)
 
-"Krass."
+label diary_first_entry:
+    "Krass."
 
 if asocial == True:
     "Ich denke, es ist eine gute Idee, diese neuen Eindrücke in das Tagebuch zu schreiben, das ich Freddy abgezogen habe."
