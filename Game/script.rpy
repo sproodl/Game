@@ -1,13 +1,13 @@
 # -*- mode: python -*-
 # -*- coding: utf-8 -*-       
 #LISTING IMAGES#
-image bg table = 'Images/screen1_choice.jpg'
-image bg table_empty = 'Images/screen2_toilet.jpg'
-image bg toilet = 'Images/screen3_which_toilet.jpg'
-image bg taxi_outside = 'Images/screen4a_taxi_outside.jpg'
+image bg table = 'Images/screen1_choice.png'
+image bg table_empty = 'Images/screen2_toilet.png'
+image bg toilet = 'Images/screen3_which_toilet.png'
+image bg taxi_outside = 'Images/screen4a_taxi_outside.png'
 image bg taxi_gone = 'Images/screen5a_taxi_gone.png'
 image bg my_taxi = 'Images/screen6a_my_taxi.png'
-image bg taxi_inside = 'Images/screen7a_taxi_inside.jpg'
+image bg taxi_inside = 'Images/screen7a_taxi_inside.png'
 image bg hover_outside = 'Images/screen4b_hover_outside.png'
 image bg hover_gone = 'Images/screen5b_hover_gone.png'
 image bg my_hover = 'Images/screen6b_my_hover.png'
@@ -15,11 +15,11 @@ image bg hover_inside = 'Images/screen7b_hover_inside.png'
 image bg sp_outside = 'Images/screen4c_sp_outside.png'
 image bg dp_outside = 'Images/screen4d_dp_outside.png'
 image bg mh_marjamshouse = 'Images/screen8_marjams_house.png'
-image bg mh_room2 = 'Images/screen9b_mh_room.png'
-image bg mh_room3 = 'Images/screen9c_mh_room.png'
-image bg mh_room1 = 'Images/screen9a_mh_hall.png'
-image bg mh_base = 'Images/screen10_mh_base.png'
-image bg tv = 'Images/screen11_tv.png'
+image bg mh_room1 = 'Images/screen9_mh_room.png'
+image bg mh_room2 = 'Images/screen10_mh_room.png'
+image bg mh_room3 = 'Images/screen11_mh_hall.png'
+image bg mh_base = 'Images/screen12_mh_base.png'
+image bg tv = 'Images/screen13_tv.png'
 
 image items_tribal = im.FactorScale('Images/Trachtenhut.png', 0.3, 0.3)
 image items_rolex = im.FactorScale('Images/Rolex.png', .3, .3)
