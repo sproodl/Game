@@ -16,3 +16,5 @@
 /Game/saves/persistent
 /Game/screens.rpyc
 /Game/script.rpyc
+/Game/*/*_diary
+/Bilder/*
