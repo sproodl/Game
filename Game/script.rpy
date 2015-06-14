@@ -48,8 +48,8 @@ label start:
 #DEFINING VARIABLES USED HERE
 python:
     player_alias = 'Spieler*in'
-    items = set()                                   #das ist der Rucksack
-    gigolo = False                                  #diese Eigenschaften können Spieler haben
+    items = set()                                   #this is player's backpack
+    gigolo = False                                  #player's traits
     religious = False
     traditional = False
     capitalist = False
@@ -57,34 +57,34 @@ python:
     handicapped = False
     techfreak = False   
     asocial = False
-    money = 0                              #Erfolgsvariablen
-    blunt = 0                              #direkte statt höfliche Ausdrucksweise
-    buddy = 0                              #verbündendes Verhalten
+    money = 0                              #variables with influence on success, for example money (=wealth)
+    blunt = 0                              #defined as direct rather than polite way of speaking
+    buddy = 0                              #trying to buddy up
     flirty = 0
-    inquisitive = 0                        #nachfragendes, bohrendes Verhalten
-    pious_trad = 0                         #frommes oder traditionelles Verhalten
-    conf_aristo = 0
+    inquisitive = 0                        #asking inquisitive questions
+    pious_trad = 0                         #devout or traditional behavior
+    conf_aristo = 0                        #conformity with the regime
     conf_anarch = 0
     conf_cap = 0
     conf_comm = 0
     conf_theo =0
     conf_techno = 0
-    def conf_calc_aristo():
+    def conf_calc_aristo(): #conf to aristocracy depends on traditionality, wealth, politeness, faithfulness and flirtiness
         conf_temp_aristo = conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
         return conf_temp_aristo;
-    def conf_calc_anarch():
+    def conf_calc_anarch(): #depends on bluntness, nosiness, flirtiness, traditionality and independence
         conf_temp_anarch = conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
         return conf_temp_anarch;
-    def conf_calc_cap():
+    def conf_calc_cap(): # depends on wealth alone
         conf_temp_cap = conf_cap + money;
         return conf_temp_cap;
-    def conf_calc_comm():
+    def conf_calc_comm(): # depends on hypocrisy, flirtiness, politeness, poverty and faithfulness
         conf_temp_comm = conf_comm + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive;
         return conf_temp_comm;
-    def conf_calc_theo():
+    def conf_calc_theo(): # depends on devoutness, faithfulness and flirtiness
         conf_temp_theo = conf_theo + pious_trad - .8* inquisitive - flirty;
         return conf_temp_theo;
-    def conf_calc_techno():
+    def conf_calc_techno(): # depends on curiosity, bluntness and traditionality
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
     conf_temp_aristo = conf_calc_aristo()
@@ -93,7 +93,7 @@ python:
     conf_temp_comm = conf_calc_comm()
     conf_temp_theo = conf_calc_theo()
     conf_temp_techno = conf_calc_techno()
-    def print_all_success(scene):
+    def print_all_success(scene):                     #prints the respective values to the terminal for check-up
         print("Punkt im Spiel: " + scene)
         print("Techno: " + str(conf_calc_techno()))
         print("Theo: " + str(conf_calc_theo()))
@@ -105,13 +105,13 @@ python:
         print("Mag Männer: " + str(attracted2male))
         print("Mag Frauen: " + str(attracted2female))
         print("Rucksackinhalt: " + str(items))
-    lethargic = 0
+    lethargic = 0                    #lethargy rises with each avoiding choice and leads to game over eventually
     foreign = False
     convict = False
     soldier = False
-    attracted2male = 0
+    attracted2male = 0               #is set by making comliments to other characters
     attracted2female = 0
-    diary = 'empty'
+    diary = 'empty'                  #diary, NEEDS WORK
 
 
 
