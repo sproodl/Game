@@ -42,12 +42,13 @@ show Marjam
 a "..."
 
 m "Willkommen in Marjams Pension, einem der traditionsreichsten Bordelle des Landes."
+"Oh, ein Bordell. Das erklärt die Badewannen-Bett-Situation."
 m "Aufgrund der derzeitigen politischen Lage sind wir... nicht ganz ausgebucht. Deshalb haben wir entschieden, Leute wie dich zu beherbergen."
 m "Du kannst hier schlafen und essen, bis du eine permanente Bleibe gefunden hast. Im Gegenzug erwarte ich, für die Unterbringungskosten entschädigt zu werden, sobald du einen Job hast. Und dass du dich unsichtbar machst, wenn Kunden im Haus sind. Das wäre dann alles. Fragen?"
 
 menu:
     "Was meinst du mit der ''derzeitigen politischen Lage''?":
-        m "..."
+        m "Ich kann weder dementieren, noch bestätigen, dass die Lage schwierig ist."
         "Aha, scheint ein schwieriges Thema zu sein."
         $ inquisitive += 3
     "Wo ist mein Zimmer?":
@@ -166,26 +167,85 @@ else:
     jump tv_techno
 
 label tv_aristo:
+#scene bg tv_studio_aristo
+"Nachrichtensprecherin" "Mein Name ist Manuela Dirks und Sie sehen (Fernsehsender) mit den 18:00Uhr Nachrichten."
+speaker "Die 15 Kurfürsten läuteten die Festwoche der Seniorität mit einer Parade ein."
+
+#scene bg tv_holiday_aristo
+
+#scene bg tv_conflict_aristo
+
+#scene bg tv_sport_aristo
+
+#scene bg tv_weather
 
 jump diary_first_entry
 
 label tv_anarch:
+scene bg tv_studio_anarch
+
+scene bg tv_holiday_anarch
+
+scene bg tv_conflict_anarch
+
+scene bg tv_sport_anarch
+
+scene bg tv_weather
 
 jump diary_first_entry
 
 label tv_cap:
+scene bg tv_studio_cap
+
+scene bg tv_holiday_cap
+
+scene bg tv_conflict_cap
+
+scene bg tv_sport_cap
+
+scene bg tv_weather
+
 
 jump diary_first_entry
 
 label tv_comm:
+scene bg tv_studio_comm
+
+scene bg tv_holiday_comm
+
+scene bg tv_conflict_comm
+
+scene bg tv_sport_comm
+
+scene bg tv_weather
 
 jump diary_first_entry
 
 label tv_techno:
+scene bg tv_studio_techno
+
+scene bg tv_holiday_techno
+
+scene bg tv_conflict_techno
+
+scene bg tv_sport_techno
+
+scene bg tv_weather
+
 
 jump diary_first_entry
 
 label tv_theo:
+scene bg tv_studio_theo
+
+scene bg tv_holiday_theo
+
+scene bg tv_conflict_theo
+
+scene bg tv_sport_theo
+
+scene bg tv_weather
+
 
 jump diary_first_entry
 

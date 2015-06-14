@@ -37,7 +37,8 @@ define h2 = Character("Hovercraftpilotin")
 define sp = Character("Stephan")
 define dp1 = Character("Evelin")
 define dp2 = Character("Lischen")
-define m = Character ("Marjam")
+define m = Character("Marjam")
+define speaker = Character("Manuela Dirks")
 
 #INITIALISING PYTHONSTUFF#
 init python:
