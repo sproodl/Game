@@ -224,15 +224,19 @@ scene bg tv_weather
 jump diary_first_entry
 
 label tv_techno:
-scene bg tv_studio_techno
+#scene bg tv_studio_techno
+"Nachrichtensprecherin" "Mein Name ist Manuela Dirks und Sie sehen (Fernsehsender) mit den 18:00Uhr Nachrichten."
+speaker "In allen Ländern der Freihandelszone® zelebrierten die Menschen heute den Beginn des Fashionweekends."
+"Fashionista" "Ich liebe diesen Feiertag, und ich liebe diese wundervollen Sachen! Sie strahlen soviel aus, soviel Mut, Seele, soviel Eigenheit!"
+speaker "Höhepunkt war der von EdHardy - pure fashion, pure soul - gesponserte Rave. "
 
-scene bg tv_holiday_techno
+#scene bg tv_holiday_techno
 
-scene bg tv_conflict_techno
+#scene bg tv_conflict_techno
 
-scene bg tv_sport_techno
+#scene bg tv_sport_techno
 
-scene bg tv_weather
+#scene bg tv_weather
 
 
 jump diary_first_entry
