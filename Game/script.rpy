@@ -106,7 +106,7 @@ python:
         print("Mag Männer: " + str(attracted2male))
         print("Mag Frauen: " + str(attracted2female))
         print("Rucksackinhalt: " + str(items))
-    lethargic = 0                    #lethargy rises with each avoiding choice and leads to game over eventually
+    lethargic = 0                    #lethargy rises with each choice that's avoided and leads to game over eventually
     foreign = False
     convict = False
     soldier = False
@@ -336,7 +336,7 @@ a "Auf den Namen [player_alias]."
 
 t1 "..."
 if traditional:
-    t1 "Bist wohl nicht von hier, oder? Mich hat jedenfalls jemand anderes gerufen." 
+    t1 "Was für ein komischer Name. Bist wohl nicht von hier, oder? Mich hat jedenfalls jemand anderes gerufen." 
 if not traditional:
     t1 "Hmpf, dann musst du auf den nächsten warten. Mich hat jemand anderes gerufen." 
 
@@ -399,7 +399,7 @@ menu:
         $ conf_anarch += 1
         $ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
-        t2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
+        t2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
@@ -407,7 +407,7 @@ menu:
         $ soldier = True
         t2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
         "{i}Der Taxifahrer salutiert und blickt ernst in seinen Rückspiegel.{/i}"
-        "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
+        "Ach du Scheiße. Ich dachte ich hätte dem ganzen strammen Gehabe den Rücken gekehrt. Bloß nichts anmerken lassen."
         $ pious_trad += 2
 
 $ print_all_success('Nach dem Taxipickup.')
@@ -487,7 +487,7 @@ menu:
 h2 "Wo warst du denn?"
 
 menu:
-    "Genau genommen bin ich gar nicht von hier.":
+    "Also genau genommen bin ich gar nicht von hier.":
         $ foreign = True
         if traditional:
             h2 "Sag bloß..."
@@ -500,14 +500,14 @@ menu:
         $ convict = True
         $ conf_anarch += 1
         $ conf_aristo -= 1
-        "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
+        "Ich werd der ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
         $ conf_anarch += 1
         $ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
-        h2 "Für einen Weltenbummler siehst du aber recht... spärlich betucht aus."
+        h2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
         "Ich sehe konzentriert aus dem Fenster."
         $ pious_trad -= 1
@@ -515,7 +515,7 @@ menu:
         $ soldier = True
         h2 "Dann hast du bestimmt unser Vaterland am Mariannengraben verteidigt."
         "{i}Die Pilotin salutiert und blickt ernst in ihren Rückspiegel.{/i}"
-        "Ach du Scheiße. Ich dachte ich hätte dem Ganzen den Rücken zugekehrt. Bloß nichts anmerken lassen."
+        "Ach du Scheiße. Ich dachte ich hätte dem ganzen strammen Gehabe den Rücken gekehrt. Bloß nichts anmerken lassen."
         $ pious_trad += 2
 
 "Die Pilotin stellt das Radio an."
@@ -558,7 +558,7 @@ label singlepickup_aristo:
         "Von wem wurdest du beauftragt?":
             $ inquisitive += 3
             sp "Vom stellvertretenden obersten Beamten dieser Grafschaft."
-        "Werden für diese Aufgabe die charismatischsten Leute ausgesucht;)?":
+        "Für diese Aufgabe werden wohl die charismatischsten Leute ausgesucht;)?":
             $ attracted2male += 1
             $ flirty += 1
             $ inquisitive -= 1
@@ -574,7 +574,7 @@ label singlepickup_aristo:
         "Ach, da gibt es nicht viel zu erzählen.":
             sp "..."
             sp "Verstehe."
-            "Er schaut auf meine abgewetzten Sneakers, auf denen unmissverständlich meine Identifikationsnummer und das Logo des Gefängnisses stehen. Memo an mich selbst: Bei der erstbesten Gelegenheit andere Schuhe besorgen."
+            "Er schaut auf meine abgewetzten Sneakers, auf denen unmissverständlich meine Häftlingsidentifikationsnummer steht. Memo an mich selbst: Bei der erstbesten Gelegenheit andere Schuhe besorgen."
             $ buddy -= 2
             $ lethargic += 1
             $ convict = True
@@ -604,7 +604,7 @@ label singlepickup_anarch:
         "Von wem wurdest du beauftragt?":
             $ inquisitive += 3
             sp "Marjam Touftou ist ihr voller Name. Aber den benutzen wir selten. Weiß auch so jeder hier, wer gemeint ist."
-        "Werden für diese Aufgabe die charismatischten Leute ausgesucht;)?":
+        "Für diese Aufgabe werden wohl die charismatischten Leute ausgesucht;)?":
             $ attracted2male += 1
             $ flirty += 1
             $ inquisitive -= 1
@@ -616,7 +616,7 @@ label singlepickup_anarch:
             sp "Zu Marjams Haus. Es liegt am östlichen Rand des Orts. Sie wird dir dann helfen, dich zu orientieren."
             sp "Ich kann das leider nicht übernehmen, weil ich gleich zurück in den Laden muss."
     sp "..."
-    sp "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend einen Meierer und einen Schuster."
+    sp "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend einen Meirer und einen Schuster."
     "Oh, ist ja wie ein Bewerbungsgespräch hier."
     menu:
         "Ach, ich kann von allem ein bisschen, weißt du...":
@@ -641,7 +641,7 @@ label singlepickup_anarch:
             sp "Ah, ein Berufsmörder. Was Lebensbejahenderes würde mir in dem Fall schon reichen..."
             $ conf_aristo += 1
             $ conf_anarch -= 4
-            sp "Nagut, dich kriegen wir schon auch noch sozialisiert."
+            sp "Nagut, wir haben schon härtere Fälle als dich sozialisiert."
             "Der scheint genauso ein Militärfan wie ich zu sein... Hat schon gute Gründe, warum ich den Verein verlassen hab."
 
 jump singlepickup_bye
@@ -689,7 +689,7 @@ label doublepickup:
             dp2 "Mama, wofür steht eigentlich fau-eh-beh-eff-ha?"
             dp1 "Für volkseigener Betrieb Fr... ach, das lernst du schon noch in der Jugendgruppe."
             "Hm, jetzt bin ich neugierig. Wofür steht das FH? Fahrradhandel?"
-        "Werden für diese Aufgabe die charismatischsten Leute ausgesucht;)?":
+        "Für diese Aufgabe werden wohl die charismatischsten Leute ausgesucht;)?":
             $ attracted2female += 1
             $ flirty += 1
             $ inquisitive -= 1
