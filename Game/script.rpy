@@ -113,18 +113,17 @@ python:
     attracted2male = 0               #is set by making comliments to other characters
     attracted2female = 0
     diary = 'empty'                  #diary, NEEDS WORK
-
+    specs_anarch = (['w,Gemeinde', 'w,Kommune', 's,Territorium', 'w,Eidgenossenschaft', 'w,Provinz', 'w,Gemeinschaft', 'w,Konfoederation', 'w,Uebergangsregierung', 'm,Landstrich', 'm,Fleck Erde', 's,Autonomiegebiet', 'w,Ansammlung', 'w,Gruppierung', 'w,Zusammenrottung', 's,Syndikat'], ['autonom', 'provisorisch' 'ehemalig', 'kooperativ', 'bunt', 'foederalistisch', 'anarchisch', 'chaotisch', 'unabhaengig'], ['Freiheit', 'Vielfaeltigkeit', 'Selbstbestimmtheit', 'Unordung', 'Unabhaengigkeit', 'Partizipation'])
+    specs_cap = (['s,Treuhandgebiet', 's,Pachtgebiet', 's,Imperium', 's,Protektorat', 'w,Volksrepublik', 'w,Bundesrepublik', 'm,Freistaat', 's,Territorium', 's,Reichskommissariat'],['liberal', 'pluralistisch', 'saekular', 'demokratisch', 'vereinigt'],['Konsum', 'Ueberfluss', 'Freiheit', 'Einzigartigkeit', 'Recht', 'Wohlstand', 'Chancengleichheit'])
+    specs_comm = (['w,Foederation', 'w,Volksrepublik', 'w,Union', 'm,Staatenbund', 's,Konglomerat', 'w,Arbeiterrepublik', 'w,Uebergangsrepublik'],['proletarisch', 'kooperativ', 'marxistisch', 'leninistisch', 'kommunistisch', 'kollektivistisch', 'demokratisch', 'stalinistisch', 'viert', 'provisorisch'],['Transformation', 'Klassenkampf', 'Revolution', 'Bruederlichkeit', 'Freundschaft', 'Gleichheit', 'Einigkeit', 'Gemeinschaft'])
+    specs_techno = (['w,Raetegemeinschaft', 'w,Allianz', 's,Konglomerat', 'm,Vorstand', 'w,Foederation', 's,Territorium', 'w,Provinz', 'w,Gemeinschaft'],['rational', 'aufgeklaert', 'effizient', 'optimiert', 'fortschrittlich', 'befreit', 'erst'],['Vernunft', 'Sicherheit', 'Gesundheit', 'Fortschritt', 'Wohlstand', 'Ordnung', 'Innovation', 'Chancengleichheit'])
+    specs_theo = (['s,Erzbistum', 's,Bistum', 's,Kalifat', 'm,Gottesstaat', 's,Reich', 's,Grossreich'],['haschimitisch', 'makkabaeisch', 'souveraen', 'friedlich', 'zweit', 'heilig', 'erleuchtet', 'ewig', 'wiedergekehrt', 'gesegnet', 'auserkoren', 'bahaiisch'],['Dogma', 'Vorbestimmtheit', 'Froemmigkeit', 'Hingabe', 'Treue', 'Reinheit'])
 
 
 scene bg table_empty
 
 menu:
-    #"In welchem Regime werde ich leben?"
-    #"In einer Aristokratie.":
-    #    "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
-    #    $ regime = "aristo"
-    #    jump generate_regime_name
-
+    "In welchem Regime werde ich leben?"
     "In einer Technokratie.":
         "01110010100."                           #Modemgeräusch
         $ regime = "techno"
@@ -154,13 +153,24 @@ $ print("Regime: %s" %regime)
  
 label generate_regime_name:
 python:
-    with codecs.open("specs/regime_specs/regime_%s_title" % regime, encoding='utf-8') as temp:
-        regime_title_list = temp.read().strip().split("\n")
-        regime_gender, regime_title = random.sample(regime_title_list, 1)[0].split("\t")
+    if regime == "anarch":
+        regime_name = "".join(random.sample(specs_anarch[0], 1))
+        regime_traits = random.sample(specs_anarch[1], 2)
+    elif regime == "cap":
+        regime_name = "".join(random.sample(specs_cap[0], 1))
+        regime_traits = random.sample(specs_cap[1], 2)
+    elif regime == "comm":
+        regime_name = "".join(random.sample(specs_comm[0], 1))
+        regime_traits = random.sample(specs_comm[1], 2)
+    elif regime == "techno":
+        regime_name = "".join(random.sample(specs_techno[0], 1))
+        regime_traits = random.sample(specs_techno[1], 2)
+    elif regime == "theo":
+        regime_name = "".join(random.sample(specs_theo[0], 1))
+        regime_traits = random.sample(specs_theo[1], 2)
 
-    with codecs.open("specs/regime_specs/regime_%s_traits" % regime, encoding='utf-8') as temp:
-        regime_trait_list = temp.read().strip().split("\n")
-        regime_traits = random.sample(regime_trait_list, 2)
+    regime_gender, regime_title = regime_name.split(",")
+
 
     if regime_gender == "w":
         regime_traits[0] = regime_traits[0] + "e"
@@ -169,6 +179,10 @@ python:
     if regime_gender == "s":
         regime_traits[0] = regime_traits[0] + "es"
         regime_traits[1] = regime_traits[1] + "es"
+
+    if regime_gender == "m":
+        regime_traits[0] = regime_traits[0] + "er"
+        regime_traits[1] = regime_traits[1] + "er"
 
     regime_name = " ".join([regime_traits[0], regime_traits[1], regime_title])
 
