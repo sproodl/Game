@@ -85,9 +85,7 @@ menu:
         jump gone
     "Auch nicht, wenn ich mich unauffällig verhalte? Würde mich schwer interessieren, wie dieses Freiervolk aussieht und was es so erzählt...":
         $ inquisitive += 3
-        if (regime == "aristo") and (conf_calc_aristo() <=0):
-            m "Nagut. Aber bitte wirklich unauffällig."
-        elif (regime == "anarch") and (conf_calc_anarch() >=1):
+        if (regime == "anarch") and (conf_calc_anarch() >=1):
             m "Nagut. Aber nerv niemanden."
         elif (regime == "cap") and (conf_calc_cap() <=0):    
             m "Nagut. Aber bitte wirklich unauffällig."
@@ -153,9 +151,7 @@ scene white
 
 scene bg tv ## Vielleicht erst ein Werbeclip, dann Nachrichten inklusive der Ankündigung von Feiern eines Staatstages
 
-if regime == 'aristo':
-    jump tv_aristo
-elif regime == 'anarch':
+if regime == 'anarch':
     jump tv_anarch
 elif regime == 'comm':
     jump tv_comm
@@ -166,14 +162,14 @@ elif regime == 'theo':
 else:
     jump tv_techno
 
-label tv_aristo:
+#label tv_aristo:
 #scene bg tv_studio_aristo
-"Nachrichtensprecherin" "Mein Name ist Manuela Dirks und Sie sehen (Fernsehsender) mit den 18:00Uhr Nachrichten."
-speaker "Die 14 Arbitri läuteten die Festwoche der Patrimonio mit einer Parade in der Hauptstadt ein."# Arbitra = entscheidende Macht
-speaker "2,5 Millionen Schaulustige sahen dem Festumzug zu. Wie jedes Jahr durfte jeder Stand einen Wagen stellen. Neu dabei sind in diesem Jahr die Wagen der "#Praktikanten, Subunternehmer, Aufstocker, dann Bild des Wagens
-speaker "Höhepunkt der Feierlichkeiten war die traditionelle Ansprache zum Lob des Patrimonio, die nach dem Rotationsprinzip Arbitrus de Gonen, Regent der Eidsgrafschaft Karas hielt."
-"de Gonen" "So möchte ich Euch daran erinnern, wie wir all diese Bedrohungen des 21. Jahrhunderts überwinden konnten: Indem wir jedem seinen angestammtem Platz zurückgaben, indem wir jedem zu seinem angeborenen Rechte verhalfen und jedem jene Pflichten abverlangten, die ihm in die Wiege gelegt worden sind. Wir haben die Herrschaft der natürlichen Ordnung wiederhergestellt, unser Erbe, unser Patrimonio."
-speaker "Die Rede schloss mit einer Wiedergabe unserer Hymne durch das eidgenössische Großorchester."
+#"Nachrichtensprecherin" "Mein Name ist Manuela Dirks und Sie sehen (Fernsehsender) mit den 18:00Uhr Nachrichten."
+#speaker "Die 14 Arbitri läuteten die Festwoche der Patrimonio mit einer Parade in der Hauptstadt ein."# Arbitra = entscheidende Macht
+#speaker "2,5 Millionen Schaulustige sahen dem Festumzug zu. Wie jedes Jahr durfte jeder Stand einen Wagen stellen. Neu dabei sind in diesem Jahr die Wagen der "#Praktikanten, Subunternehmer, Aufstocker, dann Bild des Wagens
+#speaker "Höhepunkt der Feierlichkeiten war die traditionelle Ansprache zum Lob des Patrimonio, die nach dem Rotationsprinzip Arbitrus de Gonen, Regent der Eidsgrafschaft Karas hielt."
+#"de Gonen" "So möchte ich Euch daran erinnern, wie wir all diese Bedrohungen des 21. Jahrhunderts überwinden konnten: Indem wir jedem seinen angestammtem Platz zurückgaben, indem wir jedem zu seinem angeborenen Rechte verhalfen und jedem jene Pflichten abverlangten, die ihm in die Wiege gelegt worden sind. Wir haben die Herrschaft der natürlichen Ordnung wiederhergestellt, unser Erbe, unser Patrimonio."
+#speaker "Die Rede schloss mit einer Wiedergabe unserer Hymne durch das eidgenössische Großorchester."
 
 #scene bg tv_conflict_aristo
 

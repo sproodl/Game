@@ -64,15 +64,15 @@ python:
     flirty = 0
     inquisitive = 0                        #asking inquisitive questions
     pious_trad = 0                         #devout or traditional behavior
-    conf_aristo = 0                        #conformity with the regime
+    ##conf_aristo = 0                        #conformity with the regime
     conf_anarch = 0
     conf_cap = 0
     conf_comm = 0
     conf_theo =0
     conf_techno = 0
-    def conf_calc_aristo(): #conf to aristocracy depends on traditionality, wealth, politeness, faithfulness and flirtiness
-        conf_temp_aristo = conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
-        return conf_temp_aristo;
+   # def conf_calc_aristo(): #conf to aristocracy depends on traditionality, wealth, politeness, faithfulness and flirtiness
+    #    conf_temp_aristo = conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
+     #   return conf_temp_aristo;
     def conf_calc_anarch(): #depends on bluntness, nosiness, flirtiness, traditionality and independence
         conf_temp_anarch = conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
         return conf_temp_anarch;
@@ -83,12 +83,12 @@ python:
         conf_temp_comm = conf_comm + buddy + .3* flirty - .5* blunt - .7* money - .3* inquisitive;
         return conf_temp_comm;
     def conf_calc_theo(): # depends on devoutness, faithfulness and flirtiness
-        conf_temp_theo = conf_theo + pious_trad - .8* inquisitive - flirty;
+        conf_temp_theo = conf_theo + pious_trad - .5* blunt - .8* inquisitive - flirty;
         return conf_temp_theo;
     def conf_calc_techno(): # depends on curiosity, bluntness and traditionality
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
-    conf_temp_aristo = conf_calc_aristo()
+   # conf_temp_aristo = conf_calc_aristo()
     conf_temp_anarch = conf_calc_anarch()
     conf_temp_cap = conf_calc_cap()
     conf_temp_comm = conf_calc_comm()
@@ -98,7 +98,7 @@ python:
         print("Punkt im Spiel: " + scene)
         print("Techno: " + str(conf_calc_techno()))
         print("Theo: " + str(conf_calc_theo()))
-        print("Aristo: " + str(conf_calc_aristo()))
+        #print("Aristo: " + str(conf_calc_aristo()))
         print("Anarch: " + str(conf_calc_anarch()))
         print("Comm: " + str(conf_calc_comm()))
         print("Cap: " + str(conf_calc_cap()))
@@ -119,11 +119,11 @@ python:
 scene bg table_empty
 
 menu:
-    "In welchem Regime werde ich leben?"
-    "In einer Aristokratie.":
-        "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
-        $ regime = "aristo"
-        jump generate_regime_name
+    #"In welchem Regime werde ich leben?"
+    #"In einer Aristokratie.":
+    #    "Ich liiieebe Mittelalterschmonzetten."  #Menuettauszug
+    #    $ regime = "aristo"
+    #    jump generate_regime_name
 
     "In einer Technokratie.":
         "01110010100."                           #Modemgeräusch
@@ -211,7 +211,7 @@ menu:
         $ traditional = True
         $ items.add('tribal')
         $ conf_theo += 5
-        $ conf_aristo += 5
+        #$ conf_aristo += 5
         $ conf_techno -= 5
         hide items_tribal
         "Ein selig Stück Heimat in der Fremde."
@@ -284,7 +284,7 @@ menu:
         pass
         $ gender = "male"
         $ player_alias = "Spieler"
-        $ conf_aristo += 2
+        #$ conf_aristo += 2
         $ conf_theo += 4
     "gehe nach rechts.":
         pass
@@ -312,7 +312,7 @@ elif regime == 'techno':
     jump hovercraftpickup
 elif regime == 'comm':
     jump doublepickup
-if (regime == 'anarch') or (regime == 'aristo'):
+if (regime == 'anarch'):
     jump singlepickup
 
 
@@ -391,13 +391,13 @@ menu:
     "Ach, ich war hier und da.":
         $ convict = True
         $ conf_anarch += 1
-        $ conf_aristo -= 1
+        #$ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
         $ conf_anarch += 1
-        $ conf_aristo -= 1
+        #$ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
@@ -499,13 +499,13 @@ menu:
     "Ach, ich war hier und da.":
         $ convict = True
         $ conf_anarch += 1
-        $ conf_aristo -= 1
+        #$ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
         $ conf_anarch += 1
-        $ conf_aristo -= 1
+        #$ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
         h2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
@@ -541,117 +541,61 @@ python:
         flirty -= 1
         buddy -= 1
 a "Ich heiße [player_alias]."
+sp "Sehr gut. Miriam hat mich gebeten, dich abzuholen."
+menu:
+    "Das ist aber freundlich.":
+        $ buddy += 2
+        $ inquisitive -= 1
+        sp "Ist doch klar. Eine Hand wäscht die andere. Mit nem guten Start in unsere Gemeinschaft findest du bald deinen Platz. Da helf ich gern."
+    "Von wem wurdest du beauftragt?":
+        $ inquisitive += 3
+        sp "Marjam Touftou ist ihr voller Name. Aber den benutzen wir selten. Weiß auch so jeder hier, wer gemeint ist."
+    "Für diese Aufgabe werden wohl die charismatischten Leute ausgesucht;)?":
+        $ attracted2male += 1
+        $ flirty += 1
+        $ inquisitive -= 1
+        sp "Haha, du...!."
+        "Er guckt etwas verunsichert."
+    "Wo bringst du mich hin?":
+        $ inquisitive += 1
+        $ buddy -= 1
+        sp "Zu Marjams Haus. Es liegt am östlichen Rand des Orts. Sie wird dir dann helfen, dich zu orientieren."
+        sp "Ich kann das leider nicht übernehmen, weil ich gleich zurück in den Laden muss."
+sp "..."
+sp "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend einen Meirer und einen Schuster."
+"Oh, ist ja wie ein Bewerbungsgespräch hier."
+menu:
+    "Ach, ich kann von allem ein bisschen, weißt du...":
+        sp "..."
+        sp "Verstehe."
+        "Er betrachtet mich nachdenklich. Vielleicht auch eine Spur abschätzig? Dann schaut er weg."
+        $ buddy -= 4
+        $ lethargic += 1
+    "Ich habe weder von Käse noch von Schuhen Ahnung, aber ich habe im Knast weben und stricken gelernt. Vielleicht bringt das ja was.":
+        $ convict = True
+        $ conf_anarch += 1
+        $ conf_aristo -= 1
+        sp "In der Weberei können sie tatsächlich immer Leute gebrauchen."
+    "Mit Produktion kenne ich mich nicht aus. Eher mit Kochen. Ich weiß aber nicht, ob ihr die Gewürze habt, mit denen ich sonst koche.":
+        $ foreign = True
+        sp "Kommst du nicht von hier?"
+        "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
+        sp "Von so weit her kommst du? Interessant! Ich fürchte nur, dass unser Bezirk keine Handlungsbeziehungen mit drüben pflegt."
+        sp "Sieht gewürzetechnisch also düster aus."
+    "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien haben mir kaum Zeit gelassen, etwas Lebensnahes zu lernen.":
+        $ soldier = True
+        sp "Ah, ein Berufsmörder. Was Lebensbejahenderes würde mir in dem Fall schon reichen..."
+        $ conf_aristo += 1
+        $ conf_anarch -= 4
+        sp "Nagut, wir haben schon härtere Fälle als dich sozialisiert."
+        "Der scheint genauso ein Militärfan wie ich zu sein... Hat schon gute Gründe, warum ich den Verein verlassen hab."
 
-if regime == 'aristo':
-    jump singlepickup_aristo
-else:
-    jump singlepickup_anarch
 
-label singlepickup_aristo:
-    sp "Ach, wunderbar. Mir wurde aufgetragen, dich abzuholen."
-    menu:
-        "Das ist aber freundlich.":
-            $ buddy += 2
-            $ inquisitive -= 1
-            "Er schaut verwundert."
-            sp "Es ist meine Pflicht."
-        "Von wem wurdest du beauftragt?":
-            $ inquisitive += 3
-            sp "Vom stellvertretenden obersten Beamten dieser Grafschaft."
-        "Für diese Aufgabe werden wohl die charismatischsten Leute ausgesucht;)?":
-            $ attracted2male += 1
-            $ flirty += 1
-            $ inquisitive -= 1
-            sp "Nun, nein, das machen alle Haushaltsvorsteher abwechselnd."
-            "Soso, Haushaltsvorsteher..."
-        "Wo bringst du mich hin?":
-            $ inquisitive += 1
-            $ buddy -= 1
-            sp "Zu Marjams Haus. Da wirst du erstmal untergebracht."
-    sp "Ich weiß kaum mehr über dich als deinen Namen und dass du hier neu bist."
-    "Das ist jetzt wohl eine Aufforderung zum Quatschen."
-    menu:
-        "Ach, da gibt es nicht viel zu erzählen.":
-            sp "..."
-            sp "Verstehe."
-            "Er schaut auf meine abgewetzten Sneakers, auf denen unmissverständlich meine Häftlingsidentifikationsnummer steht. Memo an mich selbst: Bei der erstbesten Gelegenheit andere Schuhe besorgen."
-            $ buddy -= 2
-            $ lethargic += 1
-            $ convict = True
-            $ conf_anarch += 1
-            $ conf_aristo -= 1
-        "Verzeihung, ist das eine Aufforderung, mich vorzustellen? Ich kenne mich noch nicht gut aus hier.":
-            $ foreign = True
-            sp "Kommst du nicht von hier?"
-            "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
-            sp "Von so weit her kommst du? Ich bin nie weiter als bis zur nächsten Zollstelle gekommen."
-        "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien, der Herr. Zuletzt Oberfeldwebel.":
-            $ soldier = True
-            sp "Ah, auch im ehrbaren Dienste der Obrigkeit."
-            $ conf_aristo += 1
-            sp "Freut mich, dich kennen zu lernen."
+"Hündchen" "Wuff."
+if traditional:
+    "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
 
-
-jump singlepickup_bye
-
-label singlepickup_anarch:
-    sp "Sehr gut. Miriam hat mich gebeten, dich abzuholen."
-    menu:
-        "Das ist aber freundlich.":
-            $ buddy += 2
-            $ inquisitive -= 1
-            sp "Ist doch klar. Eine Hand wäscht die andere. Mit nem guten Start in unsere Gemeinschaft findest du bald deinen Platz. Da helf ich gern."
-        "Von wem wurdest du beauftragt?":
-            $ inquisitive += 3
-            sp "Marjam Touftou ist ihr voller Name. Aber den benutzen wir selten. Weiß auch so jeder hier, wer gemeint ist."
-        "Für diese Aufgabe werden wohl die charismatischten Leute ausgesucht;)?":
-            $ attracted2male += 1
-            $ flirty += 1
-            $ inquisitive -= 1
-            sp "Haha, du...!."
-            "Er guckt etwas verunsichert."
-        "Wo bringst du mich hin?":
-            $ inquisitive += 1
-            $ buddy -= 1
-            sp "Zu Marjams Haus. Es liegt am östlichen Rand des Orts. Sie wird dir dann helfen, dich zu orientieren."
-            sp "Ich kann das leider nicht übernehmen, weil ich gleich zurück in den Laden muss."
-    sp "..."
-    sp "Erzähl mal, was kannst du eigentlich? Wir brauchen dringend einen Meirer und einen Schuster."
-    "Oh, ist ja wie ein Bewerbungsgespräch hier."
-    menu:
-        "Ach, ich kann von allem ein bisschen, weißt du...":
-            sp "..."
-            sp "Verstehe."
-            "Er betrachtet mich nachdenklich. Vielleicht auch eine Spur abschätzig? Dann schaut er weg."
-            $ buddy -= 4
-            $ lethargic += 1
-        "Ich habe weder von Käse noch von Schuhen Ahnung, aber ich habe im Knast weben und stricken gelernt. Vielleicht bringt das ja was.":
-            $ convict = True
-            $ conf_anarch += 1
-            $ conf_aristo -= 1
-            sp "In der Weberei können sie tatsächlich immer Leute gebrauchen."
-        "Mit Produktion kenne ich mich nicht aus. Eher mit Kochen. Ich weiß aber nicht, ob ihr die Gewürze habt, mit denen ich sonst koche.":
-            $ foreign = True
-            sp "Kommst du nicht von hier?"
-            "Nein, das Schicksal hat mich vor einigen Wochen von drüben hierher verschlagen."
-            sp "Von so weit her kommst du? Interessant! Ich fürchte nur, dass unser Bezirk keine Handlungsbeziehungen mit drüben pflegt."
-            sp "Sieht gewürzetechnisch also düster aus."
-        "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien haben mir kaum Zeit gelassen, etwas Lebensnahes zu lernen.":
-            $ soldier = True
-            sp "Ah, ein Berufsmörder. Was Lebensbejahenderes würde mir in dem Fall schon reichen..."
-            $ conf_aristo += 1
-            $ conf_anarch -= 4
-            sp "Nagut, wir haben schon härtere Fälle als dich sozialisiert."
-            "Der scheint genauso ein Militärfan wie ich zu sein... Hat schon gute Gründe, warum ich den Verein verlassen hab."
-
-jump singlepickup_bye
-
-label singlepickup_bye:
-    "Hündchen" "Wuff."
-    if traditional:
-        "Warum guckt der Hund so komisch auf meinen Hut? Hoffentlich will er ihn nicht fressen..."
-
-    sp "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
+sp "Da wären wir. Marjam Tuoftous Haus. Viel Glück dir."
 
 jump house_marjam
 ##############################################HIER LABEL WOANDERSHIN SETZEN$#########################
