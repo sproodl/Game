@@ -64,15 +64,11 @@ python:
     flirty = 0
     inquisitive = 0                        #asking inquisitive questions
     pious_trad = 0                         #devout or traditional behavior
-    ##conf_aristo = 0                        #conformity with the regime
     conf_anarch = 0
     conf_cap = 0
     conf_comm = 0
     conf_theo =0
     conf_techno = 0
-   # def conf_calc_aristo(): #conf to aristocracy depends on traditionality, wealth, politeness, faithfulness and flirtiness
-    #    conf_temp_aristo = conf_aristo + pious_trad + .7* money - blunt - inquisitive - .5* flirty;
-     #   return conf_temp_aristo;
     def conf_calc_anarch(): #depends on bluntness, nosiness, flirtiness, traditionality and independence
         conf_temp_anarch = conf_anarch + blunt + .5* inquisitive + .4* flirty - pious_trad - .6* buddy;
         return conf_temp_anarch;
@@ -88,7 +84,6 @@ python:
     def conf_calc_techno(): # depends on curiosity, bluntness and traditionality
         conf_temp_techno = conf_techno + inquisitive + .7* blunt - .5* pious_trad;
         return conf_temp_techno;
-   # conf_temp_aristo = conf_calc_aristo()
     conf_temp_anarch = conf_calc_anarch()
     conf_temp_cap = conf_calc_cap()
     conf_temp_comm = conf_calc_comm()
@@ -98,12 +93,11 @@ python:
         print("Punkt im Spiel: " + scene)
         print("Techno: " + str(conf_calc_techno()))
         print("Theo: " + str(conf_calc_theo()))
-        #print("Aristo: " + str(conf_calc_aristo()))
         print("Anarch: " + str(conf_calc_anarch()))
         print("Comm: " + str(conf_calc_comm()))
         print("Cap: " + str(conf_calc_cap()))
         print("Lethargie: " + str(lethargic))
-        print("Mag Männer: " + str(attracted2male))
+        print("Mag Maenner: " + str(attracted2male))
         print("Mag Frauen: " + str(attracted2female))
         print("Rucksackinhalt: " + str(items))
     lethargic = 0                    #lethargy rises with each choice that's avoided and leads to game over eventually
@@ -225,7 +219,6 @@ menu:
         $ traditional = True
         $ items.add('tribal')
         $ conf_theo += 5
-        #$ conf_aristo += 5
         $ conf_techno -= 5
         hide items_tribal
         "Ein selig Stück Heimat in der Fremde."
@@ -246,7 +239,6 @@ menu:
         "Höh, super lustig."
         $ simplemind = True
         $ items.add('book')
-        $ conf_aristo += 2
         $ conf_theo += 2
         $ conf_techno -=1
     "Die Medikamente." if 'meds' not in items:
@@ -298,7 +290,6 @@ menu:
         pass
         $ gender = "male"
         $ player_alias = "Spieler"
-        #$ conf_aristo += 2
         $ conf_theo += 4
     "gehe nach rechts.":
         pass
@@ -405,13 +396,11 @@ menu:
     "Ach, ich war hier und da.":
         $ convict = True
         $ conf_anarch += 1
-        #$ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
         $ conf_anarch += 1
-        #$ conf_aristo -= 1
         "Ich werd dem ja wohl nicht sagen, dass ich 15 Jahre saß!"
         t2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
@@ -513,13 +502,11 @@ menu:
     "Ach, ich war hier und da.":
         $ convict = True
         $ conf_anarch += 1
-        #$ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 10 Jahre saß... Aber lügen will ich auch nicht. Ich halte einfach die Klappe und starre aus dem Fenster."
         $ buddy -= 1
     "Ich bin verdammt viel herumgekommen.":
         $ convict = True
         $ conf_anarch += 1
-        #$ conf_aristo -= 1
         "Ich werd der ja wohl nicht sagen, dass ich 15 Jahre saß!"
         h2 "Für einen Weltenbummler hast du aber ganz schön wenig Kram dabei..."
         a "... (Ich hülle mich in Schweigen)..."
@@ -588,7 +575,6 @@ menu:
     "Ich habe weder von Käse noch von Schuhen Ahnung, aber ich habe im Knast weben und stricken gelernt. Vielleicht bringt das ja was.":
         $ convict = True
         $ conf_anarch += 1
-        $ conf_aristo -= 1
         sp "In der Weberei können sie tatsächlich immer Leute gebrauchen."
     "Mit Produktion kenne ich mich nicht aus. Eher mit Kochen. Ich weiß aber nicht, ob ihr die Gewürze habt, mit denen ich sonst koche.":
         $ foreign = True
@@ -599,7 +585,6 @@ menu:
     "5 Jahre dritte Kompanie der Infanterie in den südlichen Kolonien haben mir kaum Zeit gelassen, etwas Lebensnahes zu lernen.":
         $ soldier = True
         sp "Ah, ein Berufsmörder. Was Lebensbejahenderes würde mir in dem Fall schon reichen..."
-        $ conf_aristo += 1
         $ conf_anarch -= 4
         sp "Nagut, wir haben schon härtere Fälle als dich sozialisiert."
         "Der scheint genauso ein Militärfan wie ich zu sein... Hat schon gute Gründe, warum ich den Verein verlassen hab."
@@ -684,7 +669,6 @@ label doublepickup:
             dp1 "Der ist echt schön."
             $ convict = True
             $ conf_anarch += 1
-            $ conf_aristo -= 1
             dp1 "In der Weberei können sie tatsächlich immer Leute gebrauchen."
         "Damit kenne ich mich leider nicht so aus. Ich war vorher Wandererzähler, da reist man herum und wird für seine Geschichten bewirtet. Man macht eigentlich nie was... Handfestes.":
             $ foreign = True
@@ -699,7 +683,6 @@ label doublepickup:
         "5 Jahre dritte Kompanie der Infanterie in den westlichen Kolonien haben mir kaum Zeit gelassen, etwas so Lebensnahes zu lernen.":
             $ soldier = True
             dp1 "Ah, ein Pionier der Revolution! Für Leute wie dich finden wir immer was zu tun."
-            $ conf_aristo += 1
             $ conf_anarch -= 4
             "Hoffentlich hat die Tätigkeit nix mit meiner bisherigen zu tun..."
 
